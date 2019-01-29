@@ -218,6 +218,13 @@
                     </a>
                     <b class="arrow"></b>
                     <ul class="submenu">
+                        <li id="manage_quotation">
+                            <a href="#" onclick="getMenu('manage_quotation/index');">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                ใบเสนอสินค้า
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
                         <li id="adminList">
                             <a href="#" onclick="getMenu('adminList');">
                                 <i class="menu-icon fa fa-caret-right"></i>

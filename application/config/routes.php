@@ -56,6 +56,8 @@ $route['chkLogin'] 				= 'LoginController/chkLogin';
 $route['main'] 					= 'MainController';
 $route['mainPage'] 				= 'MainController/mainPage';
 
+$route['manage_quotation/(:any)']  	= 'QuotationController/$1';
+
 ## member
 {
 	$route['adminList'] 			= 'MainController/adminList';

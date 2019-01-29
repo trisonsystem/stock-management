@@ -33,10 +33,10 @@ $config['api_url'] 		= 'http://localhost/api-admin-yotaka/';
 
 if ($_SERVER['SERVER_NAME'] != 'localhost') {
 
-	$config['base_url'] 	= '/admin-default/';
+	$config['base_url'] 	= '/';
 	
 }else{
-	$config['base_url'] 	= '/admin-default/';
+	$config['base_url'] 	= '/stock-management/';
 }
 
 /*
