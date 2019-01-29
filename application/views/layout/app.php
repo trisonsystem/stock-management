@@ -29,6 +29,11 @@
     <link rel="stylesheet" href="<?php echo $path_host ?>assets/css/ace.min.css?v=2018022001" />
     <link rel="stylesheet" href="<?php echo $path_host ?>assets/css/admin-style.css?v=2018022002" />
 
+    <style>
+        .dropdown-mobileuser {position: relative;}
+        .dropdown-mobileuser .dropdown-menu {top: 0;left: -102%;margin-top: -1px;}
+    </style>
+
     <!-- java scripts -->
     <script type="text/javascript" src="<?php echo $path_host ?>assets/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="<?php echo $path_host ?>assets/js/bootstrap.min.js"></script>
@@ -82,7 +87,7 @@
                 <a href="" class="navbar-brand">
                     <small>
                         <!-- <i class="fa fa-money"></i> -->
-                        ADMIN DEFAULT
+                        STOCK YOTAKA
                     </small>
                 </a>
             </div>                
@@ -99,17 +104,6 @@
                             admin name
                         </a>
                     </li>
-                    <style>
-                        .dropdown-mobileuser {
-                            position: relative;
-                        }
-                        .dropdown-mobileuser .dropdown-menu {
-                            top: 0;
-                            left: -102%;
-                            margin-top: -1px;
-                        }
-                    </style>
-
                     <li role="presentation" class="dropdown-mobileuser">
                         <a class="a_mobileuser" tabindex="-1" href="#">
                             <i class="ace-icon fa fa-language"></i>
@@ -163,14 +157,6 @@
                             </div>             
                         </a>                               
                     </li> 
-                    <!-- <li class="green" id="s_user">  
-                        <a role="menuitem" tabindex="-1" href="#">                          
-                            <div class="btn-group">
-                                <i class="ace-icon fa fa-users bigger-140 bg-icon"></i>
-                                &nbsp;<?php //echo $cookieUser->subuser; ?>subuser&nbsp;
-                            </div> 
-                        </a>                                  
-                    </li> -->
                     <li class="grey" id="drop_lang">
                         <a data-toggle="dropdown" href="#" class="dropdown-toggle">
                         	English
@@ -215,7 +201,7 @@
                 <li id="main">
                     <a href="<?php echo base_url('main');?>">
                         <i class="menu-icon fa fa-tachometer"></i>
-                        <span class="menu-text">main_menu</span>
+                        <span class="menu-text">Main Menu</span>
                     </a>
 
                     <b class="arrow"></b>
@@ -225,7 +211,7 @@
                     <a href="#" class="dropdown-toggle">
                         <i class="menu-icon fa fa-cogs"></i>
                         <span class="menu-text">
-                            admin_setup
+                            สต๊อกนำเข้า
                         </span>
 
                         <b class="arrow fa fa-angle-down"></b>
@@ -235,7 +221,7 @@
                         <li id="adminList">
                             <a href="#" onclick="getMenu('adminList');">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                admin_list
+                                นำเข้าสินค้า
                             </a>
                             <b class="arrow"></b>
                         </li>
