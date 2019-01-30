@@ -58,7 +58,7 @@ $route['mainPage'] 				= 'MainController/mainPage';
 
 $route['manage_quotation/(:any)']  	= 'QuotationController/$1';
 
-## xx
+## autocomplete
 {
 	$route['autoc/(:any)'] 		= 'MainController/autoc/$1';
 }

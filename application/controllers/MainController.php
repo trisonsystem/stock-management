@@ -64,13 +64,17 @@ class MainController extends CI_Controller {
     }
 
     public function autoc($type){
-        if($type == 'product'){
-            
-            $this->load->model('MMaster');
-            $com = $this->MMaster->autocProduct();
 
-            echo json_encode($com);
+        $com = '';
+
+        $this->load->model('MMaster');
+
+        if($type == 'product'){
+            $com = $this->MMaster->autocProduct();
+        }else if($type == 'distributor'){
+            $com = $this->MMaster->autocDistributor();
         }
+        echo json_encode($com);
     }
 
 
