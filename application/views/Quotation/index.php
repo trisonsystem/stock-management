@@ -136,8 +136,15 @@ function save(){
 	});
 
 	if (status == true) {
-		$.post("manage_quotation/save",  data_pd ,function(){
-			// getMenu('manage_quotation/index');
+		$.post("manage_quotation/save",  data_pd ,function( res ){
+			res = jQuery.parseJSON( res );
+			if (res.flag) {
+				alert( res.msg );
+				getMenu('manage_quotation/index');
+			}else{
+				alert( res.msg );
+			}
+
 		});
 	}else{
 		$("#txtQty_" + status).focus();

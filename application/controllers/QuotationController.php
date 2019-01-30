@@ -39,8 +39,8 @@ class QuotationController extends CI_Controller {
 
     public function save(){
         $this->load->model('MQuotation');
-        $pd = $this->MQuotation->save_data( $_POST );
+        $res = $this->MQuotation->save_data( $_POST );
 
-        return $pd;
+        print_r( json_encode($res) );
     }
 }
