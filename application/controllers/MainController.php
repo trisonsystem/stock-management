@@ -63,5 +63,15 @@ class MainController extends CI_Controller {
         $this->output->set_output(json_encode($dataInfo));
     }
 
+    public function autoc($type){
+        if($type == 'product'){
+            
+            $this->load->model('MMaster');
+            $com = $this->MMaster->autocProduct();
+
+            echo json_encode($com);
+        }
+    }
+
 
 }

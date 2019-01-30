@@ -35,7 +35,8 @@
     </style>
 
     <!-- java scripts -->
-    <script type="text/javascript" src="<?php echo $path_host ?>assets/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="<?php echo $path_host ?>assets/js/jquery.2.1.1.min.js"></script>
+    <!-- <script type="text/javascript" src="<?php echo $path_host ?>assets/js/jquery-3.2.1.min.js"></script> -->
     <script type="text/javascript" src="<?php echo $path_host ?>assets/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="<?php echo $path_host ?>assets/js/ace-extra.min.js"></script>
     <script type="text/javascript" src="<?php echo $path_host ?>assets/js/jquery.gritter.min.js"></script>
@@ -46,6 +47,13 @@
     <script type="text/javascript">
         var path_host = '<?php echo $this->config->config['base_url']; ?>';
     </script>
+
+    <!-- <link rel="stylesheet" href="<?php echo $path_host ?>assets/modules/autocomplete/autocomplete.css" /> -->
+<!-- <script type="text/javascript" src="<?php echo $path_host ?>assets/modules/autocomplete/autocomplete.js"></script> -->
+
+    <!-- <script src="assets/js/jquery-ui.min.js"></script> -->
+    <!-- <script type="text/javascript" src="<?php echo $path_host ?>assets/js/jquery.2.1.1.min.js"></script> -->
+    <script type="text/javascript" src="<?php echo $path_host ?>assets/js/jquery-ui.min.js"></script>
 
 </head>
 <body class="no-skin">
@@ -225,8 +233,8 @@
                             </a>
                             <b class="arrow"></b>
                         </li>
-                        <li id="adminList">
-                            <a href="#" onclick="getMenu('adminList');">
+                        <li id="importOrder">
+                            <a href="#" onclick="getMenu('importOrder');">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 นำเข้าสินค้า
                             </a>
