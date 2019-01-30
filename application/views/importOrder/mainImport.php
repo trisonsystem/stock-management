@@ -28,13 +28,13 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-xs-12 col-sm-1 control-label " >เลขที่อ้างอิง</label>
+                            <label class="col-xs-12 col-sm-1 control-label ">เลขที่อ้างอิง</label>
                             <div class="col-xs-10 col-sm-2">
                                 <input type="text" id="" name=""/>
                             </div>
-                            <label class="col-xs-12 col-sm-1 control-label " >ผู้ขาย</label>
+                            <label class="col-xs-12 col-sm-1 control-label ">ผู้ขาย</label>
                             <div class="col-xs-10 col-sm-4">
-                                <input type="text" id="" name="" style="width:74%;" />
+                                <input type="text" id="distributor" name="distributor" style="width:74%;" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -140,26 +140,16 @@
             $(this).prev().focus();
         });
     });
-</script>
 
-
-<div class="row">
-	<div class="col-sm-8 col-md-7">
-		<input id="tags" type="text" class="form-control" />
-	</div>
-</div>
-
-<script type="text/javascript">
-	//autocomplete
+	//## autocomplete
 	// var availableTags =[ { label: "Choice1", value: "value1"}];
-
-	$("#tags").autocomplete({
-        source:'<?php echo $path_host; ?>autoc/product',
+    $("#distributor").autocomplete({
+        source:'<?php echo $path_host; ?>autoc/distributor',
         // source:availableTags,
         select: function( event, ui ) {
         	console.log(ui);
             event.preventDefault();
-            $("#tags").val(ui.item.label);
+            $("#distributor").val(ui.item.label);
         }
     });
 </script>

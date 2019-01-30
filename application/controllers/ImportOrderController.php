@@ -17,6 +17,12 @@ class ImportOrderController extends CI_Controller {
 
         $data = array();
 
+        $arrMonth = array('01'=>'JAN','02'=>'FEB','03'=>'MAR','04'=>'APR','05'=>'MAY','06'=>'JUN','07'=>'JUL','08'=>'AUG','09'=>'SEP','10'=>'OCT','11'=>'NOV','12'=>'DEC');
+
+        // echo (int)date('m');
+
+        // echo $arrMonth[date('m')];
+
         $dataInfo['title']      = 'admin';
         $dataInfo['sub_title']  = 'Import Order';
         $dataInfo['temp']       = $this->load->view('importOrder/mainImport',$data,true);
