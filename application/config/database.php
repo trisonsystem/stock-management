@@ -96,10 +96,10 @@ $query_builder = TRUE;
 // );
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '',
- 	'username' => '',
-	'password' => '',
-	'database' => '',
+	'hostname' => '122.155.201.37',
+ 	'username' => 'admin',
+	'password' => 'trison112233',
+	'database' => 'stock',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

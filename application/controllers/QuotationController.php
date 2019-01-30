@@ -15,8 +15,6 @@ class QuotationController extends CI_Controller {
 
 	public function index(){ 
 		$data = array();
-
-
         // $vdata      = json_encode(array(1,3));
         // $arrData    =  cUrl($this->apiUrl."adminList","post","token=".$this->token."&vdata=".$vdata);
         // $arrData    = json_decode($arrData);
@@ -25,9 +23,17 @@ class QuotationController extends CI_Controller {
 
         $data['adminlist'] 		= array();
         $data['title']      	= 'ใบเสนอสินค้า';
+        $data['product']        = $this->get_product();
         $dataInfo['title']      = $data['title'];
         $dataInfo['sub_title']  = '';
         $dataInfo['temp']       = $this->load->view('Quotation/index',$data,true);
         $this->output->set_output(json_encode($dataInfo));
 	}
+
+    public function get_product(){
+        $this->load->model('MProduct');
+        $pd = $this->MProduct->getProduct_all();
+
+        return $pd;
+    }
 }
