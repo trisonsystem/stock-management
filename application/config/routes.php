@@ -58,6 +58,16 @@ $route['mainPage'] 				= 'MainController/mainPage';
 
 $route['manage_quotation/(:any)']  	= 'QuotationController/$1';
 
+## xx
+{
+	$route['autoc/(:any)'] 		= 'MainController/autoc/$1';
+}
+
+## import
+{
+	$route['importOrder'] 		= 'ImportOrderController/index';
+}
+
 ## member
 {
 	$route['adminList'] 			= 'MainController/adminList';
