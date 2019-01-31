@@ -25,26 +25,41 @@
 	</div>
 </div>
 <hr>
-<div class="box-pd-quotation" id="box-pd-quotation" style="width: 490px; display: none;">
-	<table class="table table-border" id="tb-pd-quotation" >
-		<thead>
-			<tr>
-				<th>จำนวน</th>
-				<th style="text-align: left !important;">รายการสินค้า</th>
-			</tr>
-		</thead>
-		<tbody></tbody>
-		<tfoot>
-			<tr>
-				<td></td>
-				<td> 
-					<button type="button" class="btn btn-primary" style="width: 100px;" onclick="save()">บันทึก</button> 
-					<button type="button" class="btn btn-warning" style="width: 100px;" onclick="getMenu('manage_quotation/index');">ยกเลิก</button> 
-				</td>
-			</tr>
-		</tfoot>
-	</table>
+<div class="row">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		ที่อยู่ : <?php echo $address['address']; ?>
+	</div>
 </div>
+<div class="row" style="margin-top: 20px;">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<div class="box-pd-quotation" id="box-pd-quotation" style="width: 490px; display: none;">
+			<table class="table table-border" id="tb-pd-quotation" >
+				<thead>
+					<tr>
+						<th>จำนวน</th>
+						<th style="text-align: left !important;">รายการสินค้า</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+				debug($quotation);
+				debug($quotation_list);
+				?>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td></td>
+						<td> 
+							<button type="button" class="btn btn-primary" style="width: 100px;" onclick="save()">บันทึก</button> 
+							<button type="button" class="btn btn-warning" style="width: 100px;" onclick="getMenu('manage_quotation/index');">ยกเลิก</button> 
+						</td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+	</div>
+</div>
+
 
 
 <link rel="stylesheet" type="text/css" href="<?php echo $path_assets?>css/Quotation.css">
@@ -136,11 +151,11 @@ function save(){
 	});
 
 	if (status == true) {
-		$.post("manage_quotation/save",  data_pd ,function( res ){
-			res = jQuery.parseJSON( res );
+		$.post("manage_quotation/save",  { product : data_pd } ,function( res ){
+			res = jQuery.parseJSON( res ); 
 			if (res.flag) {
 				alert( res.msg );
-				getMenu('manage_quotation/index');
+				getMenu('manage_quotation/quotation_list');
 			}else{
 				alert( res.msg );
 			}
