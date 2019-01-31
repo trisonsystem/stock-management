@@ -15,7 +15,7 @@
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-1 control-label " >เลขที่เอกสาร</label>
                             <div class="col-xs-10 col-sm-2">
-                                <input type="text" id="" name="" value="<?php echo $billNo; ?>" readonly="readonly"/>
+                                <input type="text" id="billNo" name="billNo" value="<?php echo $billNo; ?>" readonly="readonly"/>
                             </div>
                             <label class="col-xs-12 col-sm-1 control-label " >วันที่เอกสาร</label>
                             <div class="col-xs-10 col-sm-2">
@@ -78,20 +78,6 @@
                                     	<input type="text" id="" name="" value="9.00" />
                                     </td>
                                     <td align="center">90.00</td>
-                                </tr>
-                                <tr>
-                                    <td align="center">2</td>
-                                    <td align="center">DM-987</td>
-                                    <td align="center">สบู่ก้อน</td>
-                                    <td align="center">ชิ้น</td>
-                                    <td align="center">
-                                    	<input type="text" id="" name="" value="60" />
-                                    </td>
-                                    <td align="center">4.50</td>
-                                    <td align="center">
-                                    	<input type="text" id="" name="" value="5.00" />
-                                    </td>
-                                    <td align="center">300.00</td>
                                 </tr> -->
                                 <?php if(!empty($bookAgent)): ?>
                                     <?php foreach($bookAgent as $key => $value): ?>

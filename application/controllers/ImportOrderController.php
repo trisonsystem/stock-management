@@ -32,7 +32,13 @@ class ImportOrderController extends CI_Controller {
     }
 
     public function saveImportOrder(){
-        debug($this->input->post());
+
+        $arrpost = $this->input->post();
+
+        $this->load->model('MImportOrder');
+
+        $com = $this->MImportOrder->saveImportOrder($arrpost);
+
     }
 
 	public function adminList(){
