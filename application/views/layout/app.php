@@ -45,7 +45,7 @@
     <script type="text/javascript" src="<?php echo $path_host ?>assets/js/general.js?v=2018022001"></script>
 
     <script type="text/javascript">
-        var path_host = '<?php echo $this->config->config['base_url']; ?>';
+        var baseUrl = '<?php echo $this->config->config['base_url']; ?>';
     </script>
 
     <!-- <link rel="stylesheet" href="<?php echo $path_host ?>assets/modules/autocomplete/autocomplete.css" /> -->

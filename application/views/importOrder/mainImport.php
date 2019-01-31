@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-xs-12 widthTable">
                     
-                    <form class="form-horizontal" id="frnAddBank" action="" method="post">
+                    <form class="form-horizontal" id="frmImportOrder" action="" method="post">
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-1 control-label " >เลขที่เอกสาร</label>
                             <div class="col-xs-10 col-sm-2">
@@ -121,7 +121,7 @@
                     </div>
 
                     <div>
-                    	<button>Save</button>
+                    	<button onclick="saveImportOrder();">Save</button>
                     </div>
                     
                 </div>
@@ -162,7 +162,7 @@
         select: function( event, ui ) {
         	console.log(ui);
             event.preventDefault();
-            $("#product").val(ui.item.label);
+            $("#product").val('');
             addProductOrder(ui.item.value);
         }
     });
@@ -171,23 +171,25 @@
     function addProductOrder(arrValue){
     	console.log(arrValue);
 
+    	if($("table#importOrder tbody tr#tr"+arrValue.id).html() != undefined){return false;}
+
     	var strHtml = '';
     	var trCount = $("table#importOrder tbody tr").length;
     	var no = parseInt(trCount)+1;
 
-    	strHtml += '<tr>';
-     	strHtml += ' 	<td align="center">'+no+'</td>';
+    	strHtml += '<tr id="tr'+arrValue.id+'">';
+     	strHtml += ' 	<td align="center">'+no+'<input type="hidden" class="pId" value="'+arrValue.id+'"/></td>';
      	strHtml += '	<td align="center">'+arrValue.code+'</td>';
      	strHtml += '	<td align="center">'+arrValue.name+'</td>';
      	strHtml += '	<td align="center">ชิ้น</td>';
      	strHtml += '	<td align="center">';
-     	strHtml += '		<input type="text" id="" name="" value="60" />';
+     	strHtml += '		<input type="text" class="inp-amount" value="0" />';
      	strHtml += '	</td>';
      	strHtml += '	<td align="center">4.50</td>';
      	strHtml += '	<td align="center">';
-     	strHtml += '		<input type="text" id="" name="" value="5.00" />';
+     	strHtml += '		<input type="text" class="inp-price" value="0.00" />';
      	strHtml += '	</td>';
-     	strHtml += '	<td align="center">300.00</td>';
+     	strHtml += '	<td align="center">0.00</td>';
      	strHtml += '</tr>';
 
      	if(trCount > 1){
@@ -195,5 +197,33 @@
      	}else{
      		$("table#importOrder tbody").append(strHtml);
      	}
+    }
+
+    function saveImportOrder(){
+    	var serializeFrm = $("#frmImportOrder").serializeArray();
+        // serializeFrm.push({name: 'bt', value: type});
+        
+        var aa = {};
+        $('#importOrder tbody tr').each(function() {
+			var amount = $(this).find('.inp-amount').val();
+			var price = $(this).find('.inp-price').val();
+			var pId = $(this).find('.pId').val();
+			
+			aa[pId] = {'amount':amount,'price':price};
+
+			console.log(aa);
+		});
+
+		$.ajax({
+		    url: baseUrl+"saveImportOrder",
+		    data: {"frm":serializeFrm,"data":aa},
+		    type: 'POST',
+		    dataType: 'json',
+	    	success:function(response){
+	    		console.log(response);
+	    		// genUpdateSoccer(response,'L');
+		    }
+	  	});
+
     }
 </script>

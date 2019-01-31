@@ -31,6 +31,10 @@ class ImportOrderController extends CI_Controller {
         $this->output->set_output(json_encode($dataInfo));
     }
 
+    public function saveImportOrder(){
+        debug($this->input->post());
+    }
+
 	public function adminList(){
 
         $data = array();
