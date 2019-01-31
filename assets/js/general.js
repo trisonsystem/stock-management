@@ -5,7 +5,7 @@ function getMenu(routes){
     $('#pageContent').css('height','100vh');
 
         $.ajax({
-            url: path_host+routes,
+            url: baseUrl+routes,
             type: 'POST',
             dataType: 'json',
             success: function (response) {
@@ -44,7 +44,7 @@ function changeLang(lang){
     // var res = url.substr(len-1,1);
     // url = (res=='#'?url.substr(0,len-1):url);                   
     // $.ajax({
-    //     url: path_host+"changeLang/" + lang, 
+    //     url: baseUrl+"changeLang/" + lang, 
     //     type: "GET",
     //     dataType: 'json',
     //     success: function(res) {

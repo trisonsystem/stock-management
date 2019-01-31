@@ -67,6 +67,7 @@ $route['manage_quotation/(:any)/(:any)']  	= 'QuotationController/$1/$2';
 ## import
 {
 	$route['importOrder'] 		= 'ImportOrderController/index';
+	$route['saveImportOrder'] 	= 'ImportOrderController/saveImportOrder';
 }
 
 ## member
