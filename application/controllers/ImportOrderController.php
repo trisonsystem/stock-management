@@ -22,6 +22,7 @@ class ImportOrderController extends CI_Controller {
         // echo (int)date('m');
 
         // echo $arrMonth[date('m')];
+        $data['billNo'] = $arrMonth[date('m')]."-001";
 
         $dataInfo['title']      = 'admin';
         $dataInfo['sub_title']  = 'Import Order';

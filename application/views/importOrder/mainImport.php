@@ -15,7 +15,7 @@
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-1 control-label " >เลขที่เอกสาร</label>
                             <div class="col-xs-10 col-sm-2">
-                                <input type="text" id="" name=""/>
+                                <input type="text" id="" name="" value="<?php echo $billNo; ?>" readonly="readonly"/>
                             </div>
                             <label class="col-xs-12 col-sm-1 control-label " >วันที่เอกสาร</label>
                             <div class="col-xs-10 col-sm-2">
@@ -36,6 +36,10 @@
                             <div class="col-xs-10 col-sm-4">
                                 <input type="text" id="distributor" name="distributor" style="width:74%;" />
                             </div>
+                            <label class="col-xs-12 col-sm-1 control-label ">เพิ่มสินค้า</label>
+                            <div class="col-xs-10 col-sm-3">
+                                <input type="text" id="product" name="product" style="width:100%;" />
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-1 control-label " >หมายเหตุ</label>
@@ -46,7 +50,7 @@
                     </form>
 
                     <div class="table-responsive">
-                        <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                        <table id="importOrder" class="table table-striped table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th class="center" >ลำดับ</th>
@@ -61,7 +65,7 @@
                             </thead>
 
                             <tbody>
-                            	<tr>
+                            	<!-- <tr>
                                     <td align="center">1</td>
                                     <td align="center">DM-340</td>
                                     <td align="center">น้ำยาล้างจาน</td>
@@ -88,7 +92,7 @@
                                     	<input type="text" id="" name="" value="5.00" />
                                     </td>
                                     <td align="center">300.00</td>
-                                </tr>
+                                </tr> -->
                                 <?php if(!empty($bookAgent)): ?>
                                     <?php foreach($bookAgent as $key => $value): ?>
                                         
@@ -152,4 +156,44 @@
             $("#distributor").val(ui.item.label);
         }
     });
+    $("#product").autocomplete({
+        source:'<?php echo $path_host; ?>autoc/product',
+        // source:availableTags,
+        select: function( event, ui ) {
+        	console.log(ui);
+            event.preventDefault();
+            $("#product").val(ui.item.label);
+            addProductOrder(ui.item.value);
+        }
+    });
+    //##
+
+    function addProductOrder(arrValue){
+    	console.log(arrValue);
+
+    	var strHtml = '';
+    	var trCount = $("table#importOrder tbody tr").length;
+    	var no = parseInt(trCount)+1;
+
+    	strHtml += '<tr>';
+     	strHtml += ' 	<td align="center">'+no+'</td>';
+     	strHtml += '	<td align="center">'+arrValue.code+'</td>';
+     	strHtml += '	<td align="center">'+arrValue.name+'</td>';
+     	strHtml += '	<td align="center">ชิ้น</td>';
+     	strHtml += '	<td align="center">';
+     	strHtml += '		<input type="text" id="" name="" value="60" />';
+     	strHtml += '	</td>';
+     	strHtml += '	<td align="center">4.50</td>';
+     	strHtml += '	<td align="center">';
+     	strHtml += '		<input type="text" id="" name="" value="5.00" />';
+     	strHtml += '	</td>';
+     	strHtml += '	<td align="center">300.00</td>';
+     	strHtml += '</tr>';
+
+     	if(trCount > 1){
+     		$("table#importOrder tbody tr:last").after(strHtml);
+     	}else{
+     		$("table#importOrder tbody").append(strHtml);
+     	}
+    }
 </script>
