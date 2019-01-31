@@ -56,7 +56,8 @@ $route['chkLogin'] 				= 'LoginController/chkLogin';
 $route['main'] 					= 'MainController';
 $route['mainPage'] 				= 'MainController/mainPage';
 
-$route['manage_quotation/(:any)']  	= 'QuotationController/$1';
+$route['manage_quotation/(:any)']  			= 'QuotationController/$1';
+$route['manage_quotation/(:any)/(:any)']  	= 'QuotationController/$1/$2';
 
 ## autocomplete
 {
