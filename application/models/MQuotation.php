@@ -14,7 +14,7 @@ class MQuotation extends CI_Model {
 
 		$aSave  = array();
 		$aSave['product'] = substr($pd, 1);
-		$aSave['status']  = "1";
+		$aSave['status']  = "0";
 		$aSave['remark']  = "";
 		$aSave['create_date'] = date("Y-m-d H:i:s");
 		$aSave['create_by'] = "admin";
@@ -33,4 +33,18 @@ class MQuotation extends CI_Model {
 
 		return $aReturn;
 	}
+
+	public function getQuotaion(){
+		$sql 	= "select * from quotation";
+		$query 	= $this->db->query($sql);
+		
+		$arr = array();
+		foreach ($query->result_array() as $key => $value) {
+			$arr[] = $value;
+		}
+
+		// debug($arr);
+		return $arr;
+	}
+
 }

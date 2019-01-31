@@ -43,3 +43,9 @@
 {
 	background-color: #000000;
 }
+
+.fa{ cursor: pointer; }
+.fa-edit{ color: green;}
+.fa-remove{ color: red; margin-left: 5px; }
+.fa-check-circle{ color: blue; }
+.fa-exclamation-circle{ color: #cc8b0d; }

@@ -229,6 +229,13 @@
                         <li id="manage_quotation">
                             <a href="#" onclick="getMenu('manage_quotation/index');">
                                 <i class="menu-icon fa fa-caret-right"></i>
+                                สร้างใบเสนอสินค้า
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
+                        <li id="manage_quotation">
+                            <a href="#" onclick="getMenu('manage_quotation/quotation_list');">
+                                <i class="menu-icon fa fa-caret-right"></i>
                                 ใบเสนอสินค้า
                             </a>
                             <b class="arrow"></b>
