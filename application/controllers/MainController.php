@@ -43,10 +43,27 @@ class MainController extends CI_Controller {
 
 	}
 
+    public function test(){
+        // echo 555;
+        $arrData = array( 
+                            'begin_date'=> "2018-11-01",
+                            "end_date"  => "2018-11-30",
+
+                            'aaa'     => 'aa',
+                            'date'      => date('Y-m-d H:i:s')
+                        );
+
+        $arrData    = json_encode($arrData);
+        $dataInfo   = TripleDES::encryptText($arrData,'KsAsFUHSyl9bH3qUTxxHg1mZGRgwQpQ4');
+        $dataInfo   = base64_encode($dataInfo);
+        $apiUrl = 'http://localhost/api-yotaka';
+        $param = http_build_query(array('data' => $dataInfo));
+        echo cUrl($apiUrl.'/test',"post",$param);
+    }
+
 	public function adminList(){
 
         $data = array();
-
 
         $vdata      = json_encode(array(1,3));
         $arrData    =  cUrl($this->apiUrl."adminList","post","token=".$this->token."&vdata=".$vdata);

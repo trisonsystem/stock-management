@@ -249,6 +249,26 @@
                         </li>
                     </ul>
                 </li>
+                <li class="" id="xxx">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-cogs"></i>
+                        <span class="menu-text">
+                            test
+                        </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+                    <b class="arrow"></b>
+                    <ul class="submenu">
+                        <li id="manage_quotation">
+                            <a href="#" onclick="getMenu('test');">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                test sent api
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
             </ul>
             <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
                 <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
