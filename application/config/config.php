@@ -29,7 +29,7 @@ date_default_timezone_set('Asia/Bangkok');
 
 $config['keyword'] 		= 'admin';
 $config['des_key'] 		= 'drXyH9ngm4gzGkSiCuTNEEyUKqzYnTaQ';
-$config['api_url'] 		= 'http://localhost/api-admin-yotaka/';
+$config['api_url'] 		= 'http://122.155.201.37/api-yotaka/';
 
 if ($_SERVER['SERVER_NAME'] != 'localhost') {
 

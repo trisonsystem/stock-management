@@ -82,6 +82,13 @@ $route['test'] 				= 'MainController/test';
 }
 ##--
 
+## member
+{
+	$route['language'] 			= 'LanguageController/index';
+	// $route['changeLang/(:any)'] 	= 'MainController/changeLang/$1';
+}
+##--
+
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
