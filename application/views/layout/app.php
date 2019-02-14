@@ -46,6 +46,7 @@
 
     <script type="text/javascript">
         var baseUrl = '<?php echo $this->config->config['base_url']; ?>';
+        var baseAurl = '<?php echo $this->config->config['api_url']; ?>';
     </script>
 
     <!-- <link rel="stylesheet" href="<?php echo $path_host ?>assets/modules/autocomplete/autocomplete.css" /> -->
@@ -280,8 +281,8 @@
                     </a>
                     <b class="arrow"></b>
                     <ul class="submenu">
-                        <li id="manage_quotation">
-                            <a href="#" onclick="getMenu('language');">
+                        <li id="manage_language">
+                            <a href="#" onclick="getMenu('language/index');">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 ตั้งค่าภาษา
                             </a>

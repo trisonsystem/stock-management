@@ -13,28 +13,85 @@ class LanguageController extends CI_Controller
     }
 
     public function index()
-    {
-        $arrData = array( 
-            'begin_date'=> "2018-11-01",
-            "end_date"  => "2018-11-30",
-
-            'aaa'     => 'aa',
-            'date'      => date('Y-m-d H:i:s')
-        );
-
-        $arrData    = json_encode($arrData);
-        $dataInfo['title']      = 'admin';
-        $dataInfo['sub_title']  = 'Setting Language';
-        $xdata = TripleDES::encryptText($arrData,'KsAsFUHSyl9bH3qUTxxHg1mZGRgwQpQ4');
-        exit();
-        $xdata = base64_encode($xdata);
+    { 
+        // $this->listLanguage();
+        $data = array();
+        $data['title'] = 'Setting Language';
+        // $dataInfo['title'] = "8888888888888888";
+        // $dataInfo['sub_title']  = "55555555555555";
         
-        $apiUrl = 'http://122.155.201.37/api-yotaka';
-        $param = http_build_query(array('data' => $xdata));
-        debug(cUrl($apiUrl.'/infolang',"get",$param));
-        exit();
-        $dataInfo['temp']   = $this->load->view('language/mainLanguage', $data, true);
+        $data['field'] = $this->infoLanguage();
+       
+        $dataInfo['temp'] = $this->load->view('language/mainLanguage', $data, true);
 
         $this->output->set_output(json_encode($dataInfo));
+    }
+
+    public function infoLanguage(){
+        $arrData = array( 'arrData'=> "" );
+        $arrData = json_encode($arrData);
+        $xdata = TripleDES::encryptText($arrData,'KsAsFUHSyl9bH3qUTxxHg1mZGRgwQpQ4');
+        $apiUrl = $this->apiUrl;
+        $param = http_build_query(array('data' => $xdata));
+        return cUrl($apiUrl.'/lang/infoLanguage',"get",$param);
+    }
+
+    public function saveLanguage(){
+        $post = $this->input->post();
+        
+        $arrData = array();
+
+        $arrData    = json_encode($post);
+        $dataInfo   = TripleDES::encryptText($arrData,'KsAsFUHSyl9bH3qUTxxHg1mZGRgwQpQ4');
+        $param = http_build_query(array('data' => $dataInfo));
+        $apiUrl = $this->apiUrl;
+        echo cUrl($apiUrl.'/lang/saveLanguage',"post",$param);
+    }
+
+    public function saveFieldLang(){
+        $post = $this->input->post();
+        
+        $arrData = array();
+
+        $arrData    = json_encode($post);
+        $dataInfo   = TripleDES::encryptText($arrData,'KsAsFUHSyl9bH3qUTxxHg1mZGRgwQpQ4');
+        $param = http_build_query(array('data' => $dataInfo));
+        $apiUrl = $this->apiUrl;
+        echo cUrl($apiUrl.'/lang/saveFieldLang',"post",$param);
+    }
+
+    public function deleteLanguage(){
+        $post = $this->input->post();
+        
+        $arrData = array();
+
+        $arrData    = json_encode($post);
+        $dataInfo   = TripleDES::encryptText($arrData,'KsAsFUHSyl9bH3qUTxxHg1mZGRgwQpQ4');
+        $param = http_build_query(array('data' => $dataInfo));
+        $apiUrl = $this->apiUrl;
+        echo cUrl($apiUrl.'/lang/deleteLanguage',"post",$param);
+    }
+
+    public function deleteFieldLang(){
+        $post = $this->input->post();
+        
+        $arrData = array();
+
+        $arrData    = json_encode($post);
+        $dataInfo   = TripleDES::encryptText($arrData,'KsAsFUHSyl9bH3qUTxxHg1mZGRgwQpQ4');
+        $param = http_build_query(array('data' => $dataInfo));
+        $apiUrl = $this->apiUrl;
+        echo cUrl($apiUrl.'/lang/deleteFieldLang',"post",$param);
+    }
+
+    public function saveEditLanguage(){
+        $post = $this->input->post();
+        $arrData = array();
+
+        $arrData    = json_encode($post);
+        $dataInfo   = TripleDES::encryptText($arrData,'KsAsFUHSyl9bH3qUTxxHg1mZGRgwQpQ4');
+        $param = http_build_query(array('data' => $dataInfo));
+        $apiUrl = $this->apiUrl;
+        echo cUrl($apiUrl.'/lang/saveEditLanguage',"post",$param);
     }
 }

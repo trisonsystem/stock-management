@@ -82,10 +82,9 @@ $route['test'] 				= 'MainController/test';
 }
 ##--
 
-## member
+## Language
 {
-	$route['language'] 			= 'LanguageController/index';
-	// $route['changeLang/(:any)'] 	= 'MainController/changeLang/$1';
+	$route['language/(:any)'] 			= 'LanguageController/$1';
 }
 ##--
 
