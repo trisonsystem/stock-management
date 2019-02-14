@@ -105,10 +105,7 @@
 </div>
 
 <div class="row">
-	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <p>
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-        </p>
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">    
         <?php 
         if (isset($field['list'])): 
             $str_html  = '';
