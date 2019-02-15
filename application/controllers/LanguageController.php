@@ -16,12 +16,9 @@ class LanguageController extends CI_Controller
     { 
         // $this->listLanguage();
         $data = array();
-        $data['title'] = 'Setting Language';
-        // $dataInfo['title'] = "8888888888888888";
-        // $dataInfo['sub_title']  = "55555555555555";
-        
-        $data['field'] = $this->infoLanguage();
-       
+        $data['title'] = 'Insert Language';        
+        $dataInfo['title'] = "Setting Language";
+        $dataInfo['sub_title']  = $data['title'];
         $dataInfo['temp'] = $this->load->view('language/mainLanguage', $data, true);
 
         $this->output->set_output(json_encode($dataInfo));
@@ -33,7 +30,7 @@ class LanguageController extends CI_Controller
         $xdata = TripleDES::encryptText($arrData,'KsAsFUHSyl9bH3qUTxxHg1mZGRgwQpQ4');
         $apiUrl = $this->apiUrl;
         $param = http_build_query(array('data' => $xdata));
-        return cUrl($apiUrl.'/lang/infoLanguage',"get",$param);
+        echo cUrl($apiUrl.'/lang/infoLanguage',"get",$param);
     }
 
     public function saveLanguage(){
@@ -94,4 +91,18 @@ class LanguageController extends CI_Controller
         $apiUrl = $this->apiUrl;
         echo cUrl($apiUrl.'/lang/saveEditLanguage',"post",$param);
     }
+
+    public function getLanguageFromWord(){
+        $get = $this->input->get();
+        $arrData = array();
+
+        $arrData    = json_encode($get);
+        $dataInfo   = TripleDES::encryptText($arrData,'KsAsFUHSyl9bH3qUTxxHg1mZGRgwQpQ4');
+        $param = http_build_query(array('data' => $dataInfo));
+        $apiUrl = $this->apiUrl;
+        $data['byword'] = cUrl($apiUrl.'/lang/getLanguageFromWord',"get",$param);
+        $this->load->view('language/md_editlanguage', $data);
+    }
+
+
 }
