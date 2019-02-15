@@ -89,23 +89,6 @@
     
     $(document).ready(function() {
         get_data_list();
-
-        // $('#editLangModal').on('shown.bs.modal', function () {
-        // var id = $("#xid").html();
-        // console.log(id);
-        
-        //     $.ajax({
-        //         type: "GET",
-        //         data: {"word":id},
-        //         url:  baseUrl+"language/getLanguageFromWord",
-        //         success: function (data) {
-        //             $("#dash").html(data);
-        //         },
-        //         error: function (err) {
-        //             console.log(err);
-        //         }
-        //     });
-        // });
     });
 
     function get_data_list(){
@@ -125,7 +108,6 @@
                 str_html += "</tr>"; 
             });
             $("#list-Language tbody").html( str_html );
-            // console.log( aData );
         });        
     }
 
@@ -149,7 +131,7 @@
 
     function add_lang(){
         $("#dash").empty();
-        
+
         var title = "<h2 class='modal-title'>เพิ่มข้อมูล</h2>";        
         var str_html  = "";
 
