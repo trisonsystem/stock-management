@@ -30,44 +30,6 @@
     </div>
 </div>
 
-<!-- The Modal -->
-<div class="modal" id="myModalAdd">
-    <div class="modal-dialog">
-        <div class="modal-content">        
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h2 class="modal-title">เพิ่มข้อมูล</h2>
-                <span id="xid" style="display:none"></span>
-            </div>
-            <form name="frmLanguage"enctype="multipart/form-data" id="frmLanguage">
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="usr">Word:</label>
-                        <input type="text" class="form-control" id="word" name="word" value="">
-                    </div>
-                    <div class="form-group">
-                        <label for="usr">ภาษาอังกฤษ:</label>
-                        <input type="text" class="form-control" id="en" name="en" value="">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="usr">ภาษาไทย:</label>
-                        <input type="text" class="form-control" id="th" name="th" value="">
-                    </div>
-                </div>
-                
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onclick="save_lang()">Save</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>
-            <form>
-        </div>
-    </div>
-</div>
-
 <!-- The Modal Edit -->
 <div class="modal fade" id="editLangModal" role="dialog">
     <div class="modal-dialog">
@@ -139,24 +101,19 @@
 
         str_html += "<form name='frmLanguage'enctype='multipart/form-data' id='frmLanguage'>";
         str_html += "<div class='modal-body'>";
-
         str_html += "<div class='form-group'>";
         str_html += " <label for='usr'>Word:</label>";
         str_html += " <input type='text' class='form-control' id='word' name='word' value=''>";
         str_html += "</div>";
-
         str_html += "<div class='form-group'>";
         str_html += " <label for='usr'>ภาษาอังกฤษ:</label>";
         str_html += " <input type='text' class='form-control' id='en' name='en' value=''>";
         str_html += "</div>";
-
         str_html += "<div class='form-group'>";
         str_html += " <label for='usr'>ภาษาไทย:</label>";
         str_html += " <input type='text' class='form-control' id='th' name='th' value=''>";
         str_html += "</div>";
-
         str_html += "</div>";
-
         str_html += "<div class='modal-footer'>";
         str_html += " <button type='button' class='btn btn-primary' onclick='save_lang()'>Save</button>";
         str_html += " <button type='button' class='btn btn-danger' data-dismiss='modal'>Close</button>";
