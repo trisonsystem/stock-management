@@ -16,8 +16,6 @@ class ProductController extends CI_Controller {
 
 	public function index(){
 
-        // debug(444,true);
-
         $data                   = array();
        
         $dataInfo['title']      = "Product";
@@ -25,11 +23,9 @@ class ProductController extends CI_Controller {
         $dataInfo['temp']       = $this->load->view('product/mainProduct', $data, true);
 
         $this->output->set_output(json_encode($dataInfo));
-
 	}
 
     public function productList(){
-        // debug($_POST);
 
         $post = $this->input->post();
 
@@ -58,7 +54,6 @@ class ProductController extends CI_Controller {
 
         $arrData            = $post;
         $arrData['page']    = $pageNum;
-        $arrData['limit']   = 5;
         $arrData = json_encode($arrData);
 
         $enData     = TripleDES::encryptText($arrData,$this->desKey);
@@ -69,21 +64,8 @@ class ProductController extends CI_Controller {
 
         // debug($jsonData);
 
-        // $data['page']       = $pageNum;
-        // $data['listCount']  = count($data_readData);
         $data['listData']   = $data_readData;
-        // $data['mainUser']   = $this->userData->main_username;
-
-        // debug($data,true);
-
-        // if(!empty($data_readData)){
-
-            $dataInfo['list']       = $this->load->view('product/listDataProduct',$data,true);
-
-        // }else{
-        //     $dataInfo['list']       = '<tr><td colspan="17"><center>'.$this->lang->line('no_data').'</center></td></tr>';
-        // }
-
+        $dataInfo['list']       = $this->load->view('product/listDataProduct',$data,true);
         
         $dataInfo['status']     = true;
         $dataInfo['optionPage'] = array(
@@ -92,6 +74,48 @@ class ProductController extends CI_Controller {
                                         );
 
         $this->output->set_output(json_encode($dataInfo));
+    }
+
+    public function addProduct(){
+
+        $data                   = array();
+       
+        $dataInfo['title']      = "Product";
+        $dataInfo['sub_title']  = "Add Product";
+        $dataInfo['temp']       = $this->load->view('product/AddProduct', $data, true);
+
+        $this->output->set_output(json_encode($dataInfo));
+    }
+
+    public function saveProduct(){
+
+        $post = $this->input->post();
+
+        $arrData = $post;
+        $arrData = json_encode($arrData);
+
+        $desData    = TripleDES::encryptText($arrData,$this->desKey);
+        $param      = http_build_query(array('data' => $desData));
+
+        $jsonData    = cUrl($this->apiUrl.'/product/add_product',"post",$param);
+        $dataInsert  = json_decode($jsonData,true);
+
+        // debug($dataInsert,true);
+
+        if(!empty($dataInsert['status_flag'])){
+
+            $dataSuccess['status']  = 1;
+            $dataSuccess['msg']     = 'save_success';
+
+        }else{
+            
+            $dataSuccess['status']  = 0;
+            $dataSuccess['msg']     = 'save_error  '.$dataInsert['msg'];
+        }
+
+        echo json_encode($dataSuccess);
+
+
     }
 
 

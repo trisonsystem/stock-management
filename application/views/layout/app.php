@@ -254,7 +254,7 @@
                     <a href="#" class="dropdown-toggle">
                         <i class="menu-icon fa fa-cogs"></i>
                         <span class="menu-text">
-                            test
+                            Setting
                         </span>
 
                         <b class="arrow fa fa-angle-down"></b>
@@ -271,7 +271,7 @@
                         <li id="product">
                             <a href="#" onclick="getMenu('product');">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                Product
+                                สินค้า
                             </a>
                             <b class="arrow"></b>
                         </li>

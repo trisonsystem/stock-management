@@ -86,6 +86,8 @@ $route['test'] 				= 'MainController/test';
 {
 	$route['product'] 			= 'Product/ProductController/index';
 	$route['productList'] 		= 'Product/ProductController/productList';
+	$route['addProduct'] 		= 'Product/ProductController/addProduct';
+	$route['saveProduct'] 		= 'Product/ProductController/saveProduct';
 }
 ##--
 

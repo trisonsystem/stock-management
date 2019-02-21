@@ -4,9 +4,8 @@
 	$keyword    = $this->config->config['keyword'];
 ?>
 <div class="row pdTop">
-    <div class="widget-body" id="loadMainProduct">
+    <div class="widget-body" id="loadMainProduct" style="">
         <div class="widget-main">
-
             <div class="row">
                 <div class="col-xs-12 widthTable">
                     
@@ -29,6 +28,9 @@
                                 <button type="button" name="search" id="search" class="btn btn-primary btn-sm" onclick="searchProduct(this);">
                                         Search
                                 </button>
+                                <button type="button" name="add" id="add" class="btn btn-yellow btn-sm" onclick="getMenu('addProduct')">
+                                        Add Product
+                                </button>
                             </div>
                         </div>
                     </form>
@@ -40,11 +42,11 @@
                                     <th class="center" >ลำดับ</th>
                                     <th>รหัสสินค้า</th>
                                     <th >ชื่อสินค้า</th>
+                                    <th >ประเภท</th>
                                     <th >หน่วยนับ</th>
-                                    <th >จำนวน</th>
-                                    <th >ตุ้นทุน/หนวย</th>
-                                    <th >ราคา/หนวย</th>
-                                    <th >จำนวนเงิน</th>
+                                    <th >วันที่สร้าง</th>
+                                    <th >สถานะ</th>
+                                    <th >จัดการ</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -91,6 +93,8 @@
         .next().on(ace.click_event, function(){
             $(this).prev().focus();
         });
+
+        searchProduct();
     });
 
     function searchProduct(btnow){
@@ -103,12 +107,13 @@
 
                 productname : $('input[name="productname"]').val(),
                 pageNum     : $("#tbProduct").data('pageNum'),
+                limit       : 5,
                 btName      : $(btnow).attr('name')
              },
             type: 'POST',
             dataType: 'json',
             success: function (response) {
-                // console.log(response);
+                // console.log(response); 
 
                 if(response.status){
 

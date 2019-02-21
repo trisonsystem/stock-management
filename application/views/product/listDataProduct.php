@@ -9,7 +9,19 @@
         <td align="center"><?php echo $value->autokey; ?></td>
         <td align="center"><?php echo $value->code; ?></td>
         <td align="center"><?php echo $value->name; ?></td>
-        
+        <td align="center"><?php echo $value->type_id; ?></td>
+        <td align="center"><?php echo $value->unit_id; ?></td>
+        <td align="center"><?php echo $value->create_date; ?></td>
+        <td align="center"><?php echo $value->status; ?></td>
+        <td align="center">
+            <a onclick="" >
+                <button class="btn btn-white" style="padding:2px 5px;">
+                    <i class="fa fa-pencil" aria-hidden="true"></i> แก้ไข
+                </button>
+            </a>
+        </td>
     </tr>
     <?php endforeach; ?>
+<?php else: ?>
+    <tr><td colspan="10"><center>No Data</center></td></tr>
 <?php endif; ?>
