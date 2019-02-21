@@ -82,6 +82,13 @@ $route['test'] 				= 'MainController/test';
 }
 ##--
 
+## product
+{
+	$route['product'] 			= 'Product/ProductController/index';
+	$route['productList'] 		= 'Product/ProductController/productList';
+}
+##--
+
 ## Language
 {
 	$route['language/(:any)'] 			= 'LanguageController/$1';

@@ -268,6 +268,13 @@
                             </a>
                             <b class="arrow"></b>
                         </li>
+                        <li id="product">
+                            <a href="#" onclick="getMenu('product');">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Product
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
                     </ul>
                 </li>
                 <li class="" id="lang">
@@ -353,10 +360,6 @@
                 </div>
                 <div class="page-content" id="pageContent">
                     <?php echo (isset($content))? $content : '';?>
-                    <!-- <?php //if(isset($senior)):?>
-                        <?php //$senior = //str_replace('memberbet.com','234ag.net',$senior);?>
-                        <div style="padding-top:60px;text-align:center;"><?php //echo $senior ?></div>
-                    <?php //endif;?> -->
                 </div>
             </div>
         </div><!-- /.main-content -->
