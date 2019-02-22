@@ -14,10 +14,22 @@
 <div class="row scrollbar" style="margin-top: 15px;" >
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="box-pd">
 		<?php 
+			$arr_quo_pd = array();
+			foreach ($quotation_list as $k => $v) {
+				$arr_quo_pd[$v['id']] = $v;
+			}
+			
 			foreach ($product as $key => $pd) {
 				$box_pd  = "";
+				$select  = "false";
+				$class   = "";
+				if ( isset($arr_quo_pd[$pd['id']] ) ){
+					$select = "true";
+					$class  = "pd_active";
+				}
+
 				$box_pd .= '<div class="col-lg-1 col-md-2 col-sm-3 col-xs-4 box-list">';
-				$box_pd .= '		<div class="box-pd-list" data="'.$pd['id'].'" select="false" id="'.$pd['id'].'"> <span>'.$pd['name'].'</span></div>';
+				$box_pd .= '		<div class="box-pd-list '.$class.'" data="'.$pd['id'].'" select="'.$select.'" id="'.$pd['id'].'"> <span>'.$pd['name'].'</span></div>';
 				$box_pd .= '</div>';
 				echo $box_pd;
 			} 
@@ -32,7 +44,7 @@
 </div>
 <div class="row" style="margin-top: 20px;">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		<div class="box-pd-quotation" id="box-pd-quotation" style="width: 490px; display: none;">
+		<div class="box-pd-quotation" id="box-pd-quotation" style="width: 490px; "><!-- display: none; -->
 			<table class="table table-border" id="tb-pd-quotation" >
 				<thead>
 					<tr>
@@ -41,9 +53,15 @@
 					</tr>
 				</thead>
 				<tbody>
-					<?php
-				debug($quotation);
-				debug($quotation_list);
+				<?php
+					$str_html  = '';
+					foreach ($quotation_list as $k => $v) {
+				  	  $str_html .= '<tr id="tr_'.$v['product_id'].'">';
+				  	  $str_html .= '		<td style="width:120px;">จำนวน : <input type="text" class="number" style="width:50px;" id="txtQty_'.$v['product_id'].'" value="'.$v['qty'].'"></td>';
+				  	  $str_html .= '		<td>สินค้า : '.$v['product_name'].'</td>';
+				  	  $str_html .= '</tr>';
+					}
+					echo $str_html;
 				?>
 				</tbody>
 				<tfoot>
