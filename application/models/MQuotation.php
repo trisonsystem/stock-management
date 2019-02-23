@@ -154,8 +154,9 @@ class MQuotation extends CI_Model {
 
     public function get_data_quotation_list( $quotation_id ){
    		$arr 	= array();
-		$sql	= "	select ql.*
+		$sql	= "	select ql.* , pd.name as product_name
 					from quotation_list as ql 
+					left join product as pd on ql.product_id = pd.id
 					where ql.quotation_id = '".$quotation_id."'";
 		$query 	= $this->db->query($sql);
 		

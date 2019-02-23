@@ -5,7 +5,7 @@ function getMenu(routes){
     $('#pageContent').css('height','100vh');
 
         $.ajax({
-            url: baseUrl+routes,
+            url:  routes,
             type: 'POST',
             dataType: 'json',
             success: function (response) {
