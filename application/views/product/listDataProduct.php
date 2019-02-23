@@ -15,8 +15,11 @@
         <td align="center"><?php echo $value->status; ?></td>
         <td align="center">
             <a onclick="" >
-                <button class="btn btn-white" style="padding:2px 5px;">
+                <button class="btn btn-white" style="padding:2px 5px;" onclick="getMenu('editProduct/<?php echo $value->id; ?>')">
                     <i class="fa fa-pencil" aria-hidden="true"></i> แก้ไข
+                </button>
+                <button class="btn btn-white" style="padding:2px 5px;" onclick="delProduct('<?php echo $value->id; ?>');">
+                    <i class="fa fa-times" aria-hidden="true"></i> ลบ
                 </button>
             </a>
         </td>

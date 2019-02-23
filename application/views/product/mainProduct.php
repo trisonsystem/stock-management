@@ -145,5 +145,69 @@
         });
     }
 
+    function delProduct(pid){
+
+        // $("#loadMainProduct").load('show');
+
+        
+
+        // $(".bt"+rowid).prop("disabled",true);
+        $("button").prop("disabled",true);
+
+
+        bootbox.dialog({
+            message: "confirm_chk",
+            buttons: {
+                confirm: {
+                    label: "<?php echo $this->lang->line('save') ?> ",
+                    className: "btn-primary btn-sm bt_confirm",
+                    callback: function(result) {
+
+                        $.ajax({
+                            url: 'delProduct',
+                            type: 'POST',
+                            data: {pid:pid},
+                            dataType: 'json',
+                            success: function (response) {
+                                // console.log(response);
+                                
+                                if(response.status){
+                                    $.gritter.add({
+                                        title: "",
+                                        text: '<h5><i class="fa fa-check" aria-hidden="true"></i> '+response.msg+'</h5>',
+                                        class_name: 'gritter-success'
+                                    });
+                                    searchProduct();
+                                }else{
+                                    $.gritter.add({
+                                        title: "",
+                                        text: '<h5><i class="fa fa-ban" aria-hidden="true"></i> '+response.msg+'</h5>',
+                                        class_name: 'gritter-error'
+                                    });
+                                }
+                                $("button").prop("disabled",false);
+                                
+                            },
+                            error: function (response) {
+                                console.log(response);
+                            }
+                        });
+                        
+                    }
+                },
+                cancel: {
+                    label: "cancel",
+                    className: "btn-sm",
+                    callback: function(result){
+                        // $(".bt"+rowid).prop("disabled",false);
+                        // $("#search").prop("disabled",false);
+                        $("button").prop("disabled",false);
+                    }
+                }
+            }
+        });
+
+    }
+
 	
 </script>

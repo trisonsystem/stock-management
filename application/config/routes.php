@@ -84,10 +84,12 @@ $route['test'] 				= 'MainController/test';
 
 ## product
 {
-	$route['product'] 			= 'Product/ProductController/index';
-	$route['productList'] 		= 'Product/ProductController/productList';
-	$route['addProduct'] 		= 'Product/ProductController/addProduct';
-	$route['saveProduct'] 		= 'Product/ProductController/saveProduct';
+	$route['product'] 				= 'Product/ProductController/index';
+	$route['productList'] 			= 'Product/ProductController/productList';
+	$route['addProduct'] 			= 'Product/ProductController/addProduct';
+	$route['saveProduct'] 			= 'Product/ProductController/saveProduct';
+	$route['editProduct/(:any)'] 	= 'Product/ProductController/editProduct/$1';
+	$route['delProduct'] 			= 'Product/ProductController/delProduct';
 }
 ##--
 

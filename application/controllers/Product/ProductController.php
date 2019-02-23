@@ -97,7 +97,7 @@ class ProductController extends CI_Controller {
         $desData    = TripleDES::encryptText($arrData,$this->desKey);
         $param      = http_build_query(array('data' => $desData));
 
-        $jsonData    = cUrl($this->apiUrl.'/product/add_product',"post",$param);
+        $jsonData    = cUrl($this->apiUrl.'/product/save_product',"post",$param);
         $dataInsert  = json_decode($jsonData,true);
 
         // debug($dataInsert,true);
@@ -115,7 +115,53 @@ class ProductController extends CI_Controller {
 
         echo json_encode($dataSuccess);
 
+    }
 
+    public function editProduct($id){
+
+        $arrData['id']  = $id;
+        $arrData        = json_encode($arrData);
+
+        $enData         = TripleDES::encryptText($arrData,$this->desKey);
+        $param          = http_build_query(array('data' => $enData));
+        $jsonData       = cUrl($this->apiUrl.'/product/readedit_product',"post",$param);
+        $data_readData  = json_decode($jsonData,true);
+
+        $data                   = $data_readData['msg'];
+
+        // debug($data);
+    
+        $dataInfo['title']      = "Product";
+        $dataInfo['sub_title']  = "Edit Product";
+        $dataInfo['temp']       = $this->load->view('product/AddProduct', $data, true);
+
+        $this->output->set_output(json_encode($dataInfo));
+    }
+
+    public function delProduct(){
+
+        $post = $this->input->post();
+
+        $arrData = $post;
+        $arrData = json_encode($arrData);
+
+        $desData    = TripleDES::encryptText($arrData,$this->desKey);
+        $param      = http_build_query(array('data' => $desData));
+
+        $jsonData    = cUrl($this->apiUrl.'/product/del_product',"post",$param);
+        $dataJson  = json_decode($jsonData,true);
+
+        // debug($dataJson,true);
+
+        if(!empty($dataJson['status_flag'])){
+            $dataSuccess['status']  = 1;
+            $dataSuccess['msg']     = 'save_success';
+        }else{
+            $dataSuccess['status']  = 0;
+            $dataSuccess['msg']     = 'save_error  '.$dataJson['msg'];
+        }
+
+        echo json_encode($dataSuccess);
     }
 
 

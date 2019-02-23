@@ -2,6 +2,14 @@
     // debug($adminlist);
 	$path_host  = $this->config->config['base_url'];
 	$keyword    = $this->config->config['keyword'];
+
+    $data['id']             = (!empty($id))? $id : '';
+    $data['barcode']        = (!empty($code))? $code : '';
+    $data['productName']    = (!empty($name))? $name : '';
+    $data['typeId']         = (!empty($type_id))? $type_id : '';
+    $data['unitId']         = (!empty($unit_id))? $unit_id : '';
+
+    // debug($data,true);
 ?>
 <div class="page-content loadpage">
     <div class="page-header">
@@ -22,7 +30,8 @@
                             <label class="control-label">รหัสสินค้า</label>
                         </div>
                         <div class="col-xs-6 col-sm-4">
-                            <input type="text" id="barcode" name="barcode" value="" />
+                            <input type="hidden" id="id" name="id" value="<?php echo $data['id']; ?>" />
+                            <input type="text" id="barcode" name="barcode" value="<?php echo $data['barcode']; ?>" />
                         </div>
                         <div class="col-xs-6 col-sm-2">
                             <label class="control-label">ประเภทสินค้า</label>
@@ -39,7 +48,7 @@
                             <label class="control-label">ชื่อสินค้า</label>
                         </div>
                         <div class="col-xs-6 col-sm-4">
-                            <input type="text" id="productname" name="productname" value="" />
+                            <input type="text" id="productname" name="productname" value="<?php echo $data['productName']; ?>" />
                         </div>
                         <div class="col-xs-6 col-sm-2">
                             <label class="control-label">หน่วยสินค้า</label>
