@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class ProductController extends CI_Controller {
+class StockController extends CI_Controller {
 
   	public function __construct(){
 	    parent::__construct();
@@ -18,14 +18,14 @@ class ProductController extends CI_Controller {
 
         $data                   = array();
        
-        $dataInfo['title']      = "Product";
-        $dataInfo['sub_title']  = "Product list";
-        $dataInfo['temp']       = $this->load->view('product/mainProduct', $data, true);
+        $dataInfo['title']      = "Stock";
+        $dataInfo['sub_title']  = "Stock List";
+        $dataInfo['temp']       = $this->load->view('stock/mainStock', $data, true);
 
         $this->output->set_output(json_encode($dataInfo));
 	}
 
-    public function productList(){
+    public function stockList(){
 
         $post = $this->input->post();
 
@@ -59,13 +59,13 @@ class ProductController extends CI_Controller {
         $enData     = TripleDES::encryptText($arrData,$this->desKey);
         $param      = http_build_query(array('data' => $enData));
 
-        $jsonData       = cUrl($this->apiUrl.'/product/read_product',"post",$param);
+        $jsonData       = cUrl($this->apiUrl.'/stock/read_stock',"post",$param);
         $data_readData  = json_decode($jsonData);
 
-        // debug($jsonData);
+        // debug($data_readData,true);
 
-        $data['listData']   = $data_readData;
-        $dataInfo['list']       = $this->load->view('product/listDataProduct',$data,true);
+        $data['listData']       = ($data_readData->status_flag)? $data_readData->data : '';
+        $dataInfo['list']       = $this->load->view('stock/listDataStock',$data,true);
         
         $dataInfo['status']     = true;
         $dataInfo['optionPage'] = array(
@@ -76,13 +76,13 @@ class ProductController extends CI_Controller {
         $this->output->set_output(json_encode($dataInfo));
     }
 
-    public function addProduct(){
+    public function addStock(){
 
         $data                   = array();
        
-        $dataInfo['title']      = "Product";
-        $dataInfo['sub_title']  = "Add Product";
-        $dataInfo['temp']       = $this->load->view('product/AddProduct', $data, true);
+        $dataInfo['title']      = "Stock";
+        $dataInfo['sub_title']  = "Add Stock";
+        $dataInfo['temp']       = $this->load->view('stock/AddStock', $data, true);
 
         $this->output->set_output(json_encode($dataInfo));
     }

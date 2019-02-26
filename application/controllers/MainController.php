@@ -38,6 +38,8 @@ class MainController extends CI_Controller {
         // }else{
         //     redirect('login','refresh');
         // }
+
+        setcookie($this->keyword."lang",'en');
         $data                   = array();
         $this->load->view('layout/app',$data);
 

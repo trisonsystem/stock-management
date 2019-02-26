@@ -93,6 +93,14 @@ $route['test'] 				= 'MainController/test';
 }
 ##--
 
+## stock
+{
+	$route['stock'] 				= 'Stock/StockController/index';
+	$route['stockList'] 			= 'Stock/StockController/stockList';
+	$route['addStock'] 				= 'Stock/StockController/addStock';
+}
+##--
+
 ## Language
 {
 	$route['language/(:any)'] 			= 'LanguageController/$1';

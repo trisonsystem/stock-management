@@ -275,6 +275,13 @@
                             </a>
                             <b class="arrow"></b>
                         </li>
+                        <li id="stock">
+                            <a href="#" onclick="getMenu('stock');">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                สต๊อกสินค้า
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
                     </ul>
                 </li>
                 <li class="" id="lang">

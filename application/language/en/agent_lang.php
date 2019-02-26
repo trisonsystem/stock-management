@@ -6,6 +6,8 @@ $keyword  = $ci->config->config['keyword'];
 $ci->load->config('config');
 $ci->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file','key_prefix' => 'lang_'));
 
+setcookie($keyword."Lang",'en');
+
 $lang = $_COOKIE[$keyword."Lang"];
 $cashName = "LangYotakaAdmin_".$lang;
 
