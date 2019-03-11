@@ -98,6 +98,9 @@ $route['test'] 				= 'MainController/test';
 	$route['stock'] 				= 'Stock/StockController/index';
 	$route['stockList'] 			= 'Stock/StockController/stockList';
 	$route['addStock'] 				= 'Stock/StockController/addStock';
+	$route['saveStock'] 			= 'Stock/StockController/saveStock';
+	$route['editStock/(:any)'] 		= 'Stock/StockController/editStock/$1';
+	$route['delStock'] 				= 'Stock/StockController/delStock';
 }
 ##--
 

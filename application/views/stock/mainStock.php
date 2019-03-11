@@ -87,7 +87,7 @@
             $(this).prev().focus();
         });
 
-        // searchStock();
+        searchStock();
     });
 
     function searchStock(btnow){
@@ -138,15 +138,10 @@
         });
     }
 
-    function delProduct(pid){
+    function delStock(sid){
 
         // $("#loadMainProduct").load('show');
-
-        
-
-        // $(".bt"+rowid).prop("disabled",true);
         $("button").prop("disabled",true);
-
 
         bootbox.dialog({
             message: "confirm_chk",
@@ -157,9 +152,9 @@
                     callback: function(result) {
 
                         $.ajax({
-                            url: 'delProduct',
+                            url: 'delStock',
                             type: 'POST',
-                            data: {pid:pid},
+                            data: {id:sid},
                             dataType: 'json',
                             success: function (response) {
                                 // console.log(response);
@@ -170,7 +165,7 @@
                                         text: '<h5><i class="fa fa-check" aria-hidden="true"></i> '+response.msg+'</h5>',
                                         class_name: 'gritter-success'
                                     });
-                                    searchProduct();
+                                    searchStock();
                                 }else{
                                     $.gritter.add({
                                         title: "",
@@ -192,8 +187,6 @@
                     label: "cancel",
                     className: "btn-sm",
                     callback: function(result){
-                        // $(".bt"+rowid).prop("disabled",false);
-                        // $("#search").prop("disabled",false);
                         $("button").prop("disabled",false);
                     }
                 }

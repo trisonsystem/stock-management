@@ -87,20 +87,16 @@ class StockController extends CI_Controller {
         $this->output->set_output(json_encode($dataInfo));
     }
 
-    public function saveProduct(){
+    public function saveStock(){
 
         $post = $this->input->post();
 
-        $arrData = $post;
-        $arrData = json_encode($arrData);
-
+        $arrData    = json_encode($post);
         $desData    = TripleDES::encryptText($arrData,$this->desKey);
         $param      = http_build_query(array('data' => $desData));
 
-        $jsonData    = cUrl($this->apiUrl.'/product/save_product',"post",$param);
+        $jsonData    = cUrl($this->apiUrl.'/stock/save_stock',"post",$param);
         $dataInsert  = json_decode($jsonData,true);
-
-        // debug($dataInsert,true);
 
         if(!empty($dataInsert['status_flag'])){
 
@@ -116,28 +112,28 @@ class StockController extends CI_Controller {
         echo json_encode($dataSuccess);
     }
 
-    public function editProduct($id){
+    public function editStock($id){
 
         $arrData['id']  = $id;
         $arrData        = json_encode($arrData);
 
         $enData         = TripleDES::encryptText($arrData,$this->desKey);
         $param          = http_build_query(array('data' => $enData));
-        $jsonData       = cUrl($this->apiUrl.'/product/readedit_product',"post",$param);
+        $jsonData       = cUrl($this->apiUrl.'/stock/readedit_stock',"post",$param);
         $data_readData  = json_decode($jsonData,true);
 
         $data                   = $data_readData['msg'];
 
-        // debug($data);
+        // debug($data,true);
     
-        $dataInfo['title']      = "Product";
-        $dataInfo['sub_title']  = "Edit Product";
-        $dataInfo['temp']       = $this->load->view('product/AddProduct', $data, true);
+        $dataInfo['title']      = "Stock";
+        $dataInfo['sub_title']  = "Edit Stock";
+        $dataInfo['temp']       = $this->load->view('stock/addStock', $data, true);
 
         $this->output->set_output(json_encode($dataInfo));
     }
 
-    public function delProduct(){
+    public function delStock(){
 
         $post = $this->input->post();
 
@@ -147,7 +143,7 @@ class StockController extends CI_Controller {
         $desData    = TripleDES::encryptText($arrData,$this->desKey);
         $param      = http_build_query(array('data' => $desData));
 
-        $jsonData    = cUrl($this->apiUrl.'/product/del_product',"post",$param);
+        $jsonData    = cUrl($this->apiUrl.'/stock/del_stock',"post",$param);
         $dataJson  = json_decode($jsonData,true);
 
         // debug($dataJson,true);

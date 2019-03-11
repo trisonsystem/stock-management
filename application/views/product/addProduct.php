@@ -66,13 +66,13 @@
                 <div class="clearfix form-actions">
                     <div class="col-md-offset-3 col-md-9">
                         <button class="btn btn-info" type="button" onclick="saveProduct();">
-                            <i class="ace-icon fa fa-check bigger-110"></i>
-                            Submit
-                        </button>
-                        &nbsp; &nbsp; &nbsp;
-                        <button class="btn" type="reset">
-                            <i class="ace-icon fa fa-undo bigger-110"></i>
-                            Reset
+                            <i class="ace-icon fa fa-check bigger-110"></i>Submit
+                        </button>&nbsp;
+                        <button class="btn btn-danger" type="reset">
+                            <i class="ace-icon fa fa-undo bigger-110"></i>Reset
+                        </button>&nbsp;
+                        <button class="btn btn-inverse" type="button" onclick="getMenu('stock');">
+                            <i class="ace-icon fa fa-share bigger-110"></i>Black
                         </button>
                     </div>
                 </div>
