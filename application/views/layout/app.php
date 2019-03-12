@@ -199,7 +199,7 @@
                     </li> 
                     <li class="grey" id="drop_lang">
                         <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                            <span class="lang_<?php echo $_COOKIE[$keyword.'Lang']; ?>"><?php echo $this->lang->line($_COOKIE[$keyword.'Lang']); ?></span>
+                            <span class="lang_<?php echo $_COOKIE[$keyword.'lang']; ?>"><?php echo $this->lang->line($_COOKIE[$keyword.'lang']); ?></span>
                             <i class="ace-icon fa fa-caret-down"></i>
                         </a>
                         <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">

@@ -13,7 +13,7 @@ $( document ).ready(function() {
 
 
 function SetLeague(){
-  var lang      = $.cookie( keyword +"Lang");
+  var lang      = $.cookie( keyword +"lang");
   $.get( "language/getLang", { lang: lang }, function( arrData ) {
     var aData     = jQuery.parseJSON(arrData);
     languages     = aData;
@@ -32,8 +32,8 @@ function forLang(){
 function changeLang(lang){
 
     // $.get( "language/change_lang", { lang: lang }, function( arrData ) {
-      $.removeCookie(keyword+"Lang");
-      // $.cookie(keyword+"Lang", lang);
+      $.removeCookie(keyword+"lang");
+      $.cookie(keyword+"lang", lang);
       location.reload();
     // });
 }
