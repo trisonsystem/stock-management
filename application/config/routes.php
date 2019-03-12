@@ -51,7 +51,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] 	= 'LoginController';
 $route['login'] 				= 'LoginController';
+$route['login/update_login'] 	= 'LoginController/update_login';
+$route['logout'] 				= 'LoginController/logout';
 $route['chkLogin'] 				= 'LoginController/chkLogin';
+$route['maintenance'] 			= 'LoginController/maintenance';
 
 $route['main'] 					= 'MainController';
 $route['mainPage'] 				= 'MainController/mainPage';
@@ -101,6 +104,12 @@ $route['test'] 				= 'MainController/test';
 	$route['saveStock'] 			= 'Stock/StockController/saveStock';
 	$route['editStock/(:any)'] 		= 'Stock/StockController/editStock/$1';
 	$route['delStock'] 				= 'Stock/StockController/delStock';
+}
+##--
+
+## Product type
+{
+	$route['producttype/(:any)'] 			= 'Product/ProducttypeController/$1';
 }
 ##--
 

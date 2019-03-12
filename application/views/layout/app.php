@@ -155,27 +155,60 @@
                     </li>
                 </ul>
             </div>
+
+            
     
             <div class="navbar-buttons navbar-header pull-right responsive" role="navigation" id="info">
                 <ul class="nav ace-nav">
+                    <?php if( $_COOKIE[$keyword."level"] == "SA" ){ ?>
+                    <li class="green" id="drop_lang">
+                        <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                           <?php 
+                                $hotel = json_decode($hotel);
+                                foreach ($hotel as $k => $v) { 
+                                    if ($_COOKIE[$keyword."hotel_id"] == $v->id) {
+                                        echo $v->name_th;
+                                    }
+                                } 
+                            ?>
+                            <i class="ace-icon fa fa-caret-down"></i>
+                        </a>
+                        <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                            <?php  foreach ($hotel as $k => $v) { ?>
+                                <li class="cur" onclick="change_hotel(<?php echo $v->id; ?>);">
+                                    <a tabindex="-1" onclick="" class="pointer">
+                                        <i class="ace-icon fa fa-angle-double-right"></i>
+                                        <font><?php echo $v->name_th; ?></font>
+                                    </a>
+                                </li>
+                            <?php } ?>
+                        </ul>
+                    </li>
+                   <?php  } ?>
                     <li class="purple" >
                         <a role="menuitem" tabindex="-1" href="#">                            
                             <div class="btn-group">
                                 <i class="ace-icon fa fa-user bigger-140 bg-icon"></i>
-                                &nbsp; main_username
+                                <?php echo $_COOKIE[$keyword."user"]; ?>
                             </div>             
                         </a>                               
                     </li> 
                     <li class="grey" id="drop_lang">
                         <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                        	English
+                            <span class="lang_<?php echo $_COOKIE[$keyword.'Lang']; ?>"><?php echo $this->lang->line($_COOKIE[$keyword.'Lang']); ?></span>
                             <i class="ace-icon fa fa-caret-down"></i>
                         </a>
                         <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-                            <li class="cur">
+                            <li class="cur" onclick="changeLang('th');">
                                 <a tabindex="-1" onclick="" class="pointer">
                                     <i class="ace-icon fa fa-angle-double-right"></i>
-                                    <font>Thailand</font>
+                                    <font class="lang_th">Thailand</font>
+                                </a>
+                            </li>
+                            <li class="cur" onclick="changeLang('en');">
+                                <a tabindex="-1" onclick="" class="pointer">
+                                    <i class="ace-icon fa fa-angle-double-right"></i>
+                                    <font class="lang_en">English</font>
                                 </a>
                             </li>
                         </ul>
@@ -184,7 +217,7 @@
                         <a href="<?php echo $path_host; ?>logout">
                             <div class="btn-group">
                                 <i class="ace-icon fa fa-power-off bigger-140 bg-icon-red"></i>
-                                &nbsp; logout
+                                &nbsp; <span class="lang_logout">logout</span> 
                             </div>
                         </a>                                               
                     </li>
@@ -248,6 +281,34 @@
                             </a>
                             <b class="arrow"></b>
                         </li>
+                    </ul>
+                </li>
+                <li class="" id="xxx">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-cogs"></i>
+                        <span class="menu-text">
+                            Manage Main Data
+                        </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+                    <b class="arrow"></b>
+                    <ul class="submenu">
+                        <li id="manage_quotation">
+                            <a href="#" onclick="getMenu('producttype/index');">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                ประเภทสินค้า
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
+                        <li id="product">
+                            <a href="#" onclick="getMenu('');">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                หน่วยนับ
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
+                        
                     </ul>
                 </li>
                 <li class="" id="xxx">

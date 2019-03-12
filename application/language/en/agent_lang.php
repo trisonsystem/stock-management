@@ -11,8 +11,8 @@ setcookie($keyword."Lang",'en');
 $lang = $_COOKIE[$keyword."Lang"];
 $cashName = "LangYotakaAdmin_".$lang;
 
-if (!$result = $ci->cache->get($cashName))
-{
+// if (!$result = $ci->cache->get($cashName))
+// {
     $aData      = array("lang" => $lang);
     $arrData    = json_encode($aData);
     $dataInfo   = TripleDES::encryptText($arrData, $des_key);
@@ -20,7 +20,7 @@ if (!$result = $ci->cache->get($cashName))
     $apiUrl     = $api_url.'/language/getLang';
     $result  = cUrl($apiUrl,"post",$param);
     $ci->cache->save($cashName, $result, 1 * 1440 * 365); // 1 year
-}
+// }
 
 $decode = json_decode($result);
 $lang   = array();
