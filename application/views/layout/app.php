@@ -10,7 +10,7 @@
 
     // debug($_COOKIE);
     // debug($cookieUser['main_username']);
-
+    
 ?>
 <!doctype html>
 <html lang="en">
@@ -43,10 +43,12 @@
     <script type="text/javascript" src="<?php echo $path_host ?>assets/js/jquery.countdown.min.js"></script>
     <script type="text/javascript" src="<?php echo $path_host ?>assets/js/bootbox.min.js"></script>
     <script type="text/javascript" src="<?php echo $path_host ?>assets/js/general.js?v=2018022001"></script>
+    <script type="text/javascript" src="<?php echo $path_host ?>assets/js/jquery.cookie.min.js?v=2018022001"></script>
 
     <script type="text/javascript">
         var baseUrl = '<?php echo $this->config->config['base_url']; ?>';
         var baseAurl = '<?php echo $this->config->config['api_url']; ?>';
+        var keyword = '<?php echo $this->config->config['keyword']; ?>';
     </script>
 
     <!-- <link rel="stylesheet" href="<?php echo $path_host ?>assets/modules/autocomplete/autocomplete.css" /> -->
@@ -55,6 +57,8 @@
     <!-- <script src="assets/js/jquery-ui.min.js"></script> -->
     <!-- <script type="text/javascript" src="<?php echo $path_host ?>assets/js/jquery.2.1.1.min.js"></script> -->
     <script type="text/javascript" src="<?php echo $path_host ?>assets/js/jquery-ui.min.js"></script>
+
+    <script type="text/javascript" src="<?php echo $path_host ?>assets/java/main.js"></script>
 
 </head>
 <body class="no-skin">
@@ -345,26 +349,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="" id="lang">
-                    <a href="#" class="dropdown-toggle">
-                        <i class="menu-icon fa fa-cogs"></i>
-                        <span class="menu-text">
-                            ภาษา
-                        </span>
-
-                        <b class="arrow fa fa-angle-down"></b>
-                    </a>
-                    <b class="arrow"></b>
-                    <ul class="submenu">
-                        <li id="manage_language">
-                            <a href="#" onclick="getMenu('language/index');">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                ตั้งค่าภาษา
-                            </a>
-                            <b class="arrow"></b>
-                        </li>
-                    </ul>
-                </li>
+                
             </ul>
             <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
                 <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
@@ -499,7 +484,7 @@
     <script type="text/javascript" src="<?php echo $path_host ?>assets/js/admin.js"></script>
     <script type="text/javascript" src="<?php echo $path_host ?>assets/js/jquery.form-validator.min.js"></script>
 
-    <script type="text/javascript">
+     <script type="text/javascript">
         $.validate({        
             modules : 'security',                
         });
@@ -586,7 +571,10 @@
             //--
         });
 
-
+        function change_hotel( hotel_id ){
+            $.cookie(keyword + "hotel_id", hotel_id);
+            location.reload();
+        }
     </script>    
 </body>
 </html>

@@ -310,3 +310,5 @@
 	}
 	
 </script>
+
+<?php debug($this->lang); ?>

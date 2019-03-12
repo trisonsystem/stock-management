@@ -57,6 +57,7 @@ $route['chkLogin'] 				= 'LoginController/chkLogin';
 $route['maintenance'] 			= 'LoginController/maintenance';
 
 $route['main'] 					= 'MainController';
+$route['main/(:any)'] 			= 'MainController/$1';
 $route['mainPage'] 				= 'MainController/mainPage';
 
 $route['manage_quotation/(:any)']  			= 'QuotationController/$1';
@@ -115,7 +116,8 @@ $route['test'] 				= 'MainController/test';
 
 ## Language
 {
-	$route['language/(:any)'] 			= 'LanguageController/$1';
+	// $route['language/(:any)'] 			= 'LanguageController/$1';
+	$route['language/(:any)']  			= 'Language/LanguageController/$1';
 }
 ##--
 

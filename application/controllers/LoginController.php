@@ -78,12 +78,12 @@ class LoginController extends CI_Controller {
 
             setcookie($this->keyword."token",'');
             setcookie($this->keyword."user",$usr);
-            setcookie($this->keyword."lang",'');
+            setcookie($this->keyword."Lang",'');
             setcookie($this->keyword."hotel_id", $data["hotel_id"]);
             setcookie($this->keyword."level", $data["level"]);
 
             setcookie($this->keyword."token",$token);
-            setcookie($this->keyword."lang",$lang);
+            setcookie($this->keyword."Lang",$lang);
 
             redirect('main', 'refresh');
           

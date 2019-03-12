@@ -15,9 +15,9 @@ class MainController extends CI_Controller {
     }
 
     public function index(){
-
+        // debug($_COOKIE);
         $chkCookie  = true;
-        $arrCookie  = array('token','lang','level','user','hotel_id');
+        $arrCookie  = array('token','Lang','level','user','hotel_id');
         foreach ($arrCookie as $value) {
           if(isset($_COOKIE[$this->keyword.$value])){
             $chkCookie = false;
