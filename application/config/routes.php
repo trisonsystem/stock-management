@@ -110,7 +110,9 @@ $route['test'] 				= 'MainController/test';
 
 ## Product type
 {
-	$route['producttype/(:any)'] 			= 'Product/ProducttypeController/$1';
+	$route['producttype'] 				= 'Producttype/ProducttypeController/index';
+	$route['producttypeList'] 			= 'Producttype/ProducttypeController/producttypeList';
+	// $route['producttype/(:any)'] 			= 'Product/ProducttypeController/$1';
 }
 ##--
 
@@ -118,6 +120,12 @@ $route['test'] 				= 'MainController/test';
 {
 	// $route['language/(:any)'] 			= 'LanguageController/$1';
 	$route['language/(:any)']  			= 'Language/LanguageController/$1';
+}
+##--
+
+## Unit
+{
+	$route['unit/(:any)']  			= 'Unit/UnitController/$1';
 }
 ##--
 

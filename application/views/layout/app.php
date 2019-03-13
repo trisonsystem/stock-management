@@ -286,35 +286,7 @@
                             <b class="arrow"></b>
                         </li>
                     </ul>
-                </li>
-                <li class="" id="xxx">
-                    <a href="#" class="dropdown-toggle">
-                        <i class="menu-icon fa fa-cogs"></i>
-                        <span class="menu-text">
-                            Manage Main Data
-                        </span>
-
-                        <b class="arrow fa fa-angle-down"></b>
-                    </a>
-                    <b class="arrow"></b>
-                    <ul class="submenu">
-                        <li id="manage_quotation">
-                            <a href="#" onclick="getMenu('producttype/index');">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                ประเภทสินค้า
-                            </a>
-                            <b class="arrow"></b>
-                        </li>
-                        <li id="product">
-                            <a href="#" onclick="getMenu('');">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                หน่วยนับ
-                            </a>
-                            <b class="arrow"></b>
-                        </li>
-                        
-                    </ul>
-                </li>
+                </li>                
                 <li class="" id="xxx">
                     <a href="#" class="dropdown-toggle">
                         <i class="menu-icon fa fa-cogs"></i>
@@ -326,13 +298,13 @@
                     </a>
                     <b class="arrow"></b>
                     <ul class="submenu">
-                        <li id="manage_quotation">
+                        <!-- <li id="manage_quotation">
                             <a href="#" onclick="getMenu('test');">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 test sent api
                             </a>
                             <b class="arrow"></b>
-                        </li>
+                        </li> -->
                         <li id="product">
                             <a href="#" onclick="getMenu('product');">
                                 <i class="menu-icon fa fa-caret-right"></i>
@@ -344,6 +316,20 @@
                             <a href="#" onclick="getMenu('stock');">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 สต๊อกสินค้า
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
+                        <li id="manage_quotation">
+                            <a href="#" onclick="getMenu('producttype');">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                <span class="lang_manage_product_type"><?php echo $this->lang->line('manage_product_type'); ?></span>
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
+                        <li id="product">
+                            <a href="#" onclick="getMenu('unit/index');">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                <span class="lang_manage_unit"><?php echo $this->lang->line('manage_unit'); ?></span>
                             </a>
                             <b class="arrow"></b>
                         </li>
