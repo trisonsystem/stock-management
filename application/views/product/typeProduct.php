@@ -100,59 +100,31 @@
 <!-- ###################################### Manage  ######################################-->
 
 <div id="box-manage" style="display: none;">
-	<form id="form-manage" name="form-manage" method="post" action="" enctype="multipart/form-data">		
+	<form id="form-manage" name="form-manage" method="post" action="" enctype="multipart/form-data">
 		<div class="row">
 			<div class="col-lg-2 col-md-2 col-sm-3 col-xs-5 text-right">
-				<label class="" style="font-weight: bold;font-size: 16px;"><?php echo $this->lang->line('data_position'); ?></label>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-2 col-md-2 col-sm-3 col-xs-5 text-right">
-				<span><?php echo $this->lang->line('department'); ?> : </span>
-			</div>
-			<div class="col-lg-2 col-md-2 col-sm-3 col-xs-5">
-                <select id="eslPositionDivision" name="eslPositionDivision" class="form-control" onchange="change_division('eslPositionDivision','eslPositionDepartment')">
-					<option value=""> <?php echo $this->lang->line('sl_select'); ?> </option>
-					<?php 
-						foreach ($division as $key => $value) {
-							echo '<option value="'.$value->id.'">'.$value->name.'</option>';
-						}
-					?>
-				</select>
-			</div>			
-            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-5 text-right">
-                <span><?php echo $this->lang->line('division'); ?> : </span>
-			</div>
-			<div class="col-lg-2 col-md-2 col-sm-3 col-xs-5">
-				<select id="eslPositionDepartment" name="eslPositionDepartment" class="form-control">
-					<option value=""> -- <?php echo $this->lang->line('select_division'); ?> -- </option>
-					<?php 
-						foreach ($department as $key => $value) {
-							echo '<option value="'.$value->id.'">'.$value->name.'</option>';
-						}
-					?>
-				</select>
+				<label class="" style="font-weight: bold;font-size: 16px;"><?php echo $this->lang->line('data_product_type'); ?></label>
 			</div>
 		</div>		
 		<div class="row">
             <div class="col-lg-2 col-md-2 col-sm-3 col-xs-5 text-right">
-				<span><?php echo $this->lang->line('position_code'); ?> : </span>
+				<span><?php echo $this->lang->line('product_type'); ?> : </span>
 			</div>
 			<div class="col-lg-2 col-md-2 col-sm-3 col-xs-5">
-				<input type="text" id="etxtPositionCode" class="form-control" name="etxtPositionCode">
+				<input type="text" id="etxtProductTypeName" class="form-control" name="etxtProductTypeName">
             </div>
 			<div class="col-lg-2 col-md-2 col-sm-3 col-xs-5 text-right">
-				<span><?php echo $this->lang->line('position'); ?> : </span>
+				<!-- <span><?php // echo $this->lang->line('position'); ?> : </span> -->
 			</div>
 			<div class="col-lg-2 col-md-2 col-sm-3 col-xs-5">
-				<input type="text" id="etxtPositionName" class="form-control" name="etxtPositionName">
+				<!-- <input type="text" id="etxtPositionName" class="form-control" name="etxtPositionName"> -->
             </div>
 		</div>
 		<div class="row">
 			<div class="col-lg-2 col-md-2 col-sm-3 col-xs-5 text-right">
 				<div style="display: none;">
-					<input type="text" id="txtPosition_id" name="txtPosition_id" value="0">
-					<input type="text" id="txtPosition_status" name="txtPosition_status" value="0">
+					<input type="text" id="txtProducttype_id" name="txtProducttype_id" value="0">
+					<input type="text" id="txtProducttype_status" name="txtProducttype_status" value="0">
 				</div>
 			</div>
 			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
@@ -164,6 +136,47 @@
 </div>
 
 <!-- ###################################### Manage  ######################################-->
+
+<div class="modal" tabindex="-1" role="dialog" id="modal-page">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="md-title"></h5>
+			</div>
+			<div class="modal-body">
+					<table class="table" id="tb-status-list">
+						<thead>
+						<tr>
+							<th><?php echo $this->lang->line('no'); ?></th>
+							<th><?php echo $this->lang->line('status'); ?></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class='text-center'>1</td>
+							<td><label style='cursor:pointer' onclick='chang_status(1)'><input type='radio' id='rStatus1' name='rStatus' value='1' > &nbsp;<?php echo $this->lang->line('use'); ?></label></td>
+						</tr>
+						<tr>
+							<td class='text-center'>2</td>
+							<td><label style='cursor:pointer' onclick='chang_status(9)'><input type='radio' id='rStatus9' name='rStatus' value='9' > &nbsp;<?php echo $this->lang->line('use_no'); ?></label></td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<span style="display: none;">
+									<input type="text" name="txtStatus_producttype_id" id="txtStatus_producttype_id" value="0">
+								</span>
+							</td>
+						</tr>
+					</tbody>
+					</table>
+			</div>
+			<div class="modal-footer">
+				<!-- <button type="button" class="btn btn-success" id="btn-save-noapprove" onclick="save_noapprove()">บันทึก</button> -->
+				<button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo $this->lang->line('close'); ?></button>
+			</div>
+		</div>
+	</div>
+</div>
 
 <script type="text/javascript">
 	var page = 1;
@@ -276,39 +289,102 @@
 		$("#box-manage").css("width","0");
 	}
 
-	function to_add_data( posision_id = 0, posision_status ){ // เพิ่ม แก้ไข		
-		$("#txtPosition_id").val( posision_id );
-		$("#txtPosition_status").val( posision_status );
+	function to_add_data( producttype_id = 0, producttype_status ){ // เพิ่ม แก้ไข		
+		$("#txtProducttype_id").val( producttype_id );
+		$("#txtProducttype_status").val( producttype_status );
 		$("#box-manage").show();
 		$("#box-show-search").hide();
 		$("#btn-toadd_data").hide();
 		$("#btn-tomanage_data").show();
 		$("#box-manage").css("width","100%");
 
-		if (posision_id != 0) {			
+		if (producttype_id != 0) {			
 			var option = {
-				posision_id 	: posision_id
+				producttype_id 	: producttype_id
 			}
-			$.get("position/search_position", option,function( aData ){
+			$.get("producttype/search_producttype", option,function( aData ){
 				aData = jQuery.parseJSON( aData );
 				if ( Object.keys(aData).length > 1) {
 					aData = aData[0];
-					$("#etxtPositionCode").val(aData.code);
-					$("#etxtPositionName").val(aData.name);
-					$("#eslPositionDivision option[value='"+aData.m_division_id+"']").prop('selected', true);
-					$("#eslPositionDepartment option[value='"+aData.m_department_id+"']").prop('selected', true);
+					$("#etxtProductTypeName").val(aData.name);
 				} else {
 					alert( "no data" );
 				}
 			});
 		}else{
 			clear_data();
-			$("#txtPosition_id").val("0");
+			$("#txtProducttype_id").val("0");
 		}
 
 		$('.datepicker').datepicker({format: 'dd-mm-yyyy'});
 	}
+
+	function save_data(){
+		var aData = JSON.stringify( $("#form-manage").serializeArray() );
+			aData = jQuery.parseJSON( aData );			
+		if (validate(aData)) {
+			$.post("producttype/save_data",  aData  ,function( res ){
+				res = jQuery.parseJSON( res ); 
+				if (res.flag) {
+					alert( res.msg );
+					get_data_list();					
+					to_manage_data();
+				}else{
+					alert( res.msg );
+				}
+			});
+		}else{
+			console.log("error-xxxxx")
+		}
+	}
+
+	function validate(aData){
+		var status = true;
+		
+		$.each(aData,function(k,v){
+			if (v.name != "txtProducttype_id" && v.name != "txtProducttype_status") {				
+				var obj = $("#"+v.name);
+				if (obj.val() == "") {
+					obj.addClass("error-form");
+					obj.focus();
+					status = false;			
+				}else{
+					obj.removeClass("error-form");
+				}
+			}
+		});		
+
+		return status;
+	}
+
+	function open_chang_status( producttype_id, status, text_title ){
+		$("#txtStatus_producttype_id").val( producttype_id );
+		$("#md-title").html( text_title );		
+		$("#modal-page").modal("show");
+		setTimeout(function(){
+			$('input:radio[name="rStatus"][value="'+status+'"]').prop('checked', true);
+		},300);
+	}
+
+	var c_status = true;
+	function chang_status( status ){
+		if (c_status) {
+			c_status = false;
+			var id = $("#txtStatus_producttype_id").val();
+			$.post("producttype/chang_status",  { producttype_id : id, status: status } ,function( res ){
+				res = jQuery.parseJSON( res ); 
+				if (res.flag) {
+					$("#modal-page").modal("hide");
+					alert( res.msg );
+					get_data_list();
+					c_status = true;
+				}else{
+					alert( res.msg );
+					c_status = true;
+				}
+
+			});
+		}
+	}
 	
 </script>
-
-<?php debug($this->lang); ?>

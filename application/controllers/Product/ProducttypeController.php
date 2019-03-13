@@ -24,10 +24,8 @@ class ProducttypeController extends CI_Controller {
     }
 
     public function sent_to_api( $path, $aData ){
-        // $aData["hotel_id"]  = $_COOKIE[$this->keyword."hotel_id"];
-        // $aData["user"]      = $_COOKIE[$this->keyword."user"];
-        $aData["hotel_id"] = "xxx";
-        $aData["user"] = "xxxx";
+        $aData["hotel_id"]  = $_COOKIE[$this->keyword."hotel_id"];
+        $aData["user"]      = $_COOKIE[$this->keyword."user"];        
         $aData      = ($aData == "") ?  $this->arr_sent : $aData;
         $arrData    = json_encode($aData);
         $dataInfo   = TripleDES::encryptText($arrData, $this->des_key);
@@ -39,6 +37,19 @@ class ProducttypeController extends CI_Controller {
 
     public function search_producttype(){
     	$json_data  = $this->sent_to_api( '/producttype/search_producttype', $_GET );
+        echo $json_data;
+    }
+
+    public function save_data(){
+        $_POST["user"] = $_COOKIE[$this->keyword."user"];
+        // $_POST["hotel_id"] = $_COOKIE[$this->keyword."hotel_id"];              
+        $json_data  = $this->sent_to_api( '/producttype/save_data', $_POST );        
+        echo $json_data;
+    }
+
+    public function chang_status(){
+        $_POST["user"] = $_COOKIE[$this->keyword."user"];        
+        $json_data     = $this->sent_to_api( '/producttype/chang_status', $_POST );
         echo $json_data;
     }
 
