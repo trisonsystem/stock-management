@@ -29,8 +29,7 @@ function forLang(){
     // });
 }
 
-function changeLang(lang){
-
+function changeLang(lang){    
     // $.get( "language/change_lang", { lang: lang }, function( arrData ) {
       $.removeCookie(keyword+"lang");
       $.cookie(keyword+"lang", lang);
