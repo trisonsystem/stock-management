@@ -5,8 +5,8 @@ $des_key  = $ci->config->config['des_key'];
 $keyword  = $ci->config->config['keyword'];
 $ci->load->config('config');
 $ci->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file','key_prefix' => 'lang_'));
-if (!isset($_COOKIE[$keyword."Lang"])) { $_COOKIE[$keyword."Lang"] = "en"; }
-$lang = $_COOKIE[$keyword."Lang"];
+if (!isset($_COOKIE[$keyword."lang"])) { $_COOKIE[$keyword."lang"] = "en"; }
+$lang = $_COOKIE[$keyword."lang"];
 $cashName = "LangYotakaAdmin_".$lang;
 
 // if (!$result = $ci->cache->get($cashName))

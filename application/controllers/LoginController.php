@@ -78,12 +78,12 @@ class LoginController extends CI_Controller {
 
             setcookie($this->keyword."token",'');
             setcookie($this->keyword."user",$usr);
-            setcookie($this->keyword."Lang",'');
+            setcookie($this->keyword."lang",'');
             setcookie($this->keyword."hotel_id", $data["hotel_id"]);
             setcookie($this->keyword."level", $data["level"]);
 
             setcookie($this->keyword."token",$token);
-            setcookie($this->keyword."Lang",$lang);
+            setcookie($this->keyword."lang",$lang);
 
             redirect('main', 'refresh');
           
@@ -94,26 +94,27 @@ class LoginController extends CI_Controller {
     }
 
     public function update_login(){
-        $arr = array("status_flag" => "false", "msg"  => "log out" );
-        if (isset($_COOKIE[$this->keyword."token"])) {
-            $token = decode($_COOKIE[$this->keyword."token"]);
+        // $arr = array("status_flag" => "false", "msg"  => "log out" );
+        // if (isset($_COOKIE[$this->keyword."token"])) {
+        //     $token = decode($_COOKIE[$this->keyword."token"]);
 
-            // debug($token, 1);
-            $data       = array("u_username"=>$token["user"],"key_token"=>$token["rndkey"]);
-            $arrData    = json_encode($data);
-            $dataInfo   = TripleDES::encryptText($arrData, $this->des_key);
-            $param      = http_build_query(array('data' => $dataInfo));
-            $apiUrl     = $this->api_url.'/login/update_login';
-            $result     = cUrl($apiUrl,"post",$param);
-            // $arr        = json_decode($result,true);
-            echo $result;
+        //     // debug($token, 1);
+        //     $data       = array("u_username"=>$token["user"],"key_token"=>$token["rndkey"]);
+        //     $arrData    = json_encode($data);
+        //     $dataInfo   = TripleDES::encryptText($arrData, $this->des_key);
+        //     $param      = http_build_query(array('data' => $dataInfo));
+        //     $apiUrl     = $this->api_url.'/login/update_login';
+        //     $result     = cUrl($apiUrl,"post",$param);
+        //     // $arr        = json_decode($result,true);
+        //     echo $result;
             
-        }else{
-            ssetcookie($this->keyword."user",'');
-            setcookie($this->keyword."token",'');
-            setcookie($this->keyword."hotel_id", "");
-            setcookie($this->keyword."level", "");
-        }
+        // }else{
+        //     ssetcookie($this->keyword."user",'');
+        //     setcookie($this->keyword."token",'');
+        //     setcookie($this->keyword."hotel_id", "");
+        //     setcookie($this->keyword."level", "");
+        // }
+echo '{"status_flag":true,"msg":"success"}';
 
         // print_r( json_encode($arr) );
     }

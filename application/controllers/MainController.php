@@ -15,19 +15,21 @@ class MainController extends CI_Controller {
     }
 
     public function index(){
-        // debug($_COOKIE);
-        $chkCookie  = true;
-        $arrCookie  = array('token','lang','level','user','hotel_id');
-        foreach ($arrCookie as $value) {
-          if(isset($_COOKIE[$this->keyword.$value])){
-            $chkCookie = false;
-          }else{
-            $chkCookie  = true;
+        $chkCookie  = false;
+        $arrCookie  = array('token','level','user','hotel_id','lang');
+        foreach ($arrCookie as $value) {       
+          if(!isset($_COOKIE[$this->keyword.$value])){
+            $chkCookie = true;
+            // $chkCookie = 'a';
+            // echo $_COOKIE[$this->keyword.$value].">>>>>".$value."<br>";
           }
+          // echo $_COOKIE[$this->keyword.$value]."<br>";
+          // echo $this->keyword.$value."<===>".$chkCookie."<br>";
         }
-
+        // echo "<br>".$chkCookie;
+        // exit();
         // // debug(444,true);
-
+        
         if($chkCookie == false){
             $data                   = array();
             // $data['messageShow']    = messageRunning($this->token);

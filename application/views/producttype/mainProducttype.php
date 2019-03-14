@@ -89,7 +89,7 @@
             url: 'producttypeList',
             data: { 
 
-                producttypename : $('input[name="producttypename"]').val(),
+                producttype_name : $('input[name="producttypename"]').val(),
                 pageNum     : $("#tbStock").data('pageNum'),
                 limit       : 5,
                 btName      : $(btnow).attr('name')

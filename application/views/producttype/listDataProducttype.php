@@ -1,7 +1,7 @@
 <?php 
     $path_host  = $this->config->config['base_url'];
     $keyword    = $this->config->config['keyword'];
-    // debug($listData,true);
+    // debug($listData);
 ?>
 <?php if($listData != ''): ?>
     <?php foreach($listData as $key => $value): ?>

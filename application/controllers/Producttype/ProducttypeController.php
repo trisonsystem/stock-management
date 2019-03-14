@@ -26,9 +26,9 @@ class ProducttypeController extends CI_Controller {
 	}
 
 	public function producttypeList(){
-		
-        $post = $this->input->post();
 
+        $post = $this->input->post();
+        // debug($post, true);
         if($this->input->post('pageNum')){
 
             if($this->input->post('btName') == 'prevPage'){
@@ -54,6 +54,8 @@ class ProducttypeController extends CI_Controller {
 
         $arrData            = $post;
         $arrData['page']    = $pageNum;
+        // $arrData['hotel_id']	= $_COOKIE[$this->keyword."hotel_id"];
+        // $arrData['user']	= $_COOKIE[$this->keyword."user"];
         $arrData = json_encode($arrData);
 
         $enData     = TripleDES::encryptText($arrData,$this->desKey);
