@@ -18,8 +18,8 @@ class ProducttypeController extends CI_Controller {
 
         $data                   = array();
        
-        $dataInfo['title']      = "Product Type";
-        $dataInfo['sub_title']  = "Product Type List";
+        $dataInfo['title']      = $this->lang->line('product_type');
+        $dataInfo['sub_title']  = $this->lang->line('product_type_list');
         $dataInfo['temp']       = $this->load->view('producttype/mainProducttype', $data, true);
 
         $this->output->set_output(json_encode($dataInfo));
@@ -57,16 +57,18 @@ class ProducttypeController extends CI_Controller {
         // $arrData['hotel_id']	= $_COOKIE[$this->keyword."hotel_id"];
         // $arrData['user']	= $_COOKIE[$this->keyword."user"];
         $arrData = json_encode($arrData);
-
         $enData     = TripleDES::encryptText($arrData,$this->desKey);
         $param      = http_build_query(array('data' => $enData));
 
         $jsonData       = cUrl($this->apiUrl.'/producttype/read_producttype',"post",$param);
         $data_readData  = json_decode($jsonData);
-
+        // echo "test data";
         // debug($data_readData,true);
-
+        $data['checkdata']      = ($data_readData->status_flag)? $data_readData->status_flag : '';
         $data['listData']       = ($data_readData->status_flag)? $data_readData->data : '';
+        // $data['listData']       = ($data_readData->status_flag == 1)? 'Yes' : 'No';
+        // debug($post);
+        // debug($data['listData'], true);
         $dataInfo['list']       = $this->load->view('producttype/listDataProducttype',$data,true);
         
         $dataInfo['status']     = true;
@@ -77,5 +79,41 @@ class ProducttypeController extends CI_Controller {
 
         $this->output->set_output(json_encode($dataInfo));
 	}
+
+    public function addProducttype(){
+
+        $data                   = array();
+       
+        $dataInfo['title']      = $this->lang->line('product_type');
+        $dataInfo['sub_title']  = $this->lang->line('add_product_type');
+        $dataInfo['temp']       = $this->load->view('producttype/AddProducttype', $data, true);
+
+        $this->output->set_output(json_encode($dataInfo));
+    }
+
+    public function saveProducttype(){
+        
+        $post = $this->input->post();
+
+        $arrData    = json_encode($post);
+        $desData    = TripleDES::encryptText($arrData,$this->desKey);
+        $param      = http_build_query(array('data' => $desData));
+
+        $jsonData    = cUrl($this->apiUrl.'/stock/save_stock',"post",$param);
+        $dataInsert  = json_decode($jsonData,true);
+
+        if(!empty($dataInsert['status_flag'])){
+
+            $dataSuccess['status']  = 1;
+            $dataSuccess['msg']     = 'save_success';
+
+        }else{
+            
+            $dataSuccess['status']  = 0;
+            $dataSuccess['msg']     = 'save_error  '.$dataInsert['msg'];
+        }
+
+        echo json_encode($dataSuccess);
+    }
 
 }

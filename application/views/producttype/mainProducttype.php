@@ -11,16 +11,16 @@
                     
                     <form class="form-horizontal" id="frmImportOrder" action="" method="post">
                         <div class="form-group">
-                            <label class="col-xs-12 col-sm-2 control-label" style="max-width:85px;">ค้นหาสินค้า</label>
+                            <label class="col-xs-12 col-sm-2 control-label" style="max-width:85px;"><?php echo $this->lang->line('search'); ?></label>
                             <div class="col-xs-10 col-sm-3">
                                 <input type="text" id="producttypename" name="producttypename" value="" />
                             </div>
                             <div class="col-xs-12 col-sm-4">
                                 <button type="button" name="search" id="search" class="btn btn-primary btn-sm" onclick="searchProductType(this);">
-                                        Search
+                                        <?php echo $this->lang->line('search'); ?>
                                 </button>
-                                <button type="button" name="add" id="add" class="btn btn-yellow btn-sm" onclick="getMenu('addStock')">
-                                        Add Stock
+                                <button type="button" name="add" id="add" class="btn btn-yellow btn-sm" onclick="getMenu('addProducttype')">
+                                        <?php echo $this->lang->line('add'); ?>
                                 </button>
                             </div>
                         </div>

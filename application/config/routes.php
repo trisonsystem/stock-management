@@ -112,6 +112,8 @@ $route['test'] 				= 'MainController/test';
 {
 	$route['producttype'] 				= 'Producttype/ProducttypeController/index';
 	$route['producttypeList'] 			= 'Producttype/ProducttypeController/producttypeList';
+	$route['addProducttype'] 			= 'Producttype/ProducttypeController/addProducttype';
+	$route['saveProducttype'] 			= 'Producttype/ProducttypeController/saveProducttype';
 	// $route['producttype/(:any)'] 			= 'Product/ProducttypeController/$1';
 }
 ##--
