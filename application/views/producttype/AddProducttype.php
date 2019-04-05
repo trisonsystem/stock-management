@@ -42,7 +42,7 @@
             <div class="col-xs-12">
                 <div class="clearfix form-actions">
                     <div class="col-md-offset-3 col-md-9">
-                        <button class="btn btn-info" type="button" onclick="saveStock();">
+                        <button class="btn btn-info" type="button" onclick="saveProducttype();">
                             <i class="ace-icon fa fa-check bigger-110"></i>Submit
                         </button>&nbsp;
                         <button class="btn btn-danger" type="reset">
@@ -59,5 +59,40 @@
 
 </div>
 <script type="text/javascript">
+    function saveProducttype(type){
 
+        $("#pageContent").load('show');
+
+        var serializeFrm = $("form").serializeArray();
+
+        $.ajax({
+            url: 'saveProducttype',
+            type: 'POST',
+            data: serializeFrm,
+            dataType: 'json',
+            success: function (response) {
+                console.log(response);
+                $("#pageContent").load('hide');
+                
+                if(response.status){
+                    $.gritter.add({
+                        title: "",
+                        text: '<h5><i class="fa fa-check" aria-hidden="true"></i> '+response.msg+'</h5>',
+                        class_name: 'gritter-success'
+                    });
+                    getMenu('producttype');
+                }else{
+                    $.gritter.add({
+                        title: "",
+                        text: '<h5><i class="fa fa-ban" aria-hidden="true"></i> '+response.msg+'</h5>',
+                        class_name: 'gritter-error'
+                    });
+                }
+                
+            },
+            error: function (response) {
+                console.log(response);
+            }
+        });
+    }
 </script>

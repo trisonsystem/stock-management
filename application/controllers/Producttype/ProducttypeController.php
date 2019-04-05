@@ -93,15 +93,16 @@ class ProducttypeController extends CI_Controller {
 
     public function saveProducttype(){
         
-        $post = $this->input->post();
-
+        $post = $this->input->post(); 
+        $post["user"]      = $_COOKIE[$this->keyword."user"];
+        
         $arrData    = json_encode($post);
         $desData    = TripleDES::encryptText($arrData,$this->desKey);
         $param      = http_build_query(array('data' => $desData));
 
-        $jsonData    = cUrl($this->apiUrl.'/stock/save_stock',"post",$param);
+        $jsonData    = cUrl($this->apiUrl.'/producttype/save_producttype',"post",$param);
         $dataInsert  = json_decode($jsonData,true);
-
+        
         if(!empty($dataInsert['status_flag'])){
 
             $dataSuccess['status']  = 1;
@@ -111,6 +112,53 @@ class ProducttypeController extends CI_Controller {
             
             $dataSuccess['status']  = 0;
             $dataSuccess['msg']     = 'save_error  '.$dataInsert['msg'];
+        }
+
+        echo json_encode($dataSuccess);
+    }
+
+    public function editProducttype($id){
+        $arrData['id']  = $id;
+        $arrData        = json_encode($arrData);
+
+        $enData         = TripleDES::encryptText($arrData,$this->desKey);
+        $param          = http_build_query(array('data' => $enData));
+        $jsonData       = cUrl($this->apiUrl.'/producttype/readedit_producttype',"post",$param);
+        $data_readData  = json_decode($jsonData,true);
+
+        $data                   = $data_readData['msg'];
+
+        // debug($data,true);
+    
+        $dataInfo['title']      = $this->lang->line('product_type');;
+        $dataInfo['sub_title']  = $this->lang->line('edit_product_type');
+        $dataInfo['temp']       = $this->load->view('producttype/AddProducttype', $data, true);
+
+        $this->output->set_output(json_encode($dataInfo));
+    }
+
+    public function delProducttype(){
+
+        $post = $this->input->post();
+        // debug($post, true);
+        $arrData = $post;
+        $arrData = json_encode($arrData);
+
+        $desData    = TripleDES::encryptText($arrData,$this->desKey);
+        $param      = http_build_query(array('data' => $desData));
+
+        $jsonData    = cUrl($this->apiUrl.'/producttype/del_producttype',"post",$param);
+        // debug($jsonData, true);
+        $dataJson  = json_decode($jsonData,true);
+
+        // debug($dataJson,true);
+
+        if(!empty($dataJson['status_flag'])){
+            $dataSuccess['status']  = 1;
+            $dataSuccess['msg']     = 'save_success';
+        }else{
+            $dataSuccess['status']  = 0;
+            $dataSuccess['msg']     = 'save_error  '.$dataJson['msg'];
         }
 
         echo json_encode($dataSuccess);

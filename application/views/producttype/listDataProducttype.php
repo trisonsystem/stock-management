@@ -11,10 +11,10 @@
         <td align="center"><?php echo $value->name; ?></td>
         <td align="center">
             <a onclick="" >
-                <button class="btn btn-white" style="padding:2px 5px;" onclick="getMenu('editStock/<?php echo $value->id; ?>')">
+                <button class="btn btn-white" style="padding:2px 5px;" onclick="getMenu('editProducttype/<?php echo $value->id; ?>')">
                     <i class="fa fa-pencil" aria-hidden="true"></i> <?php echo $this->lang->line('edit'); ?>
                 </button>
-                <button class="btn btn-white" style="padding:2px 5px;" onclick="delStock('<?php echo $value->id; ?>');">
+                <button class="btn btn-white" style="padding:2px 5px;" onclick="delProductType('<?php echo $value->id; ?>');">
                     <i class="fa fa-times" aria-hidden="true"></i> <?php echo $this->lang->line('delete'); ?>
                 </button>
             </a>
