@@ -70,7 +70,7 @@ class StockController extends CI_Controller {
         $dataInfo['status']     = true;
         $dataInfo['optionPage'] = array(
                                             'page' => $pageNum,
-                                            'listCount' => count($data_readData)
+                                            'listCount' => count($data_readData->data)
                                         );
 
         $this->output->set_output(json_encode($dataInfo));

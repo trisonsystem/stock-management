@@ -60,6 +60,22 @@
                             </select>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="col-xs-6 col-sm-2">
+                            <label class="control-label">รูปสินค้า</label>
+                        </div>
+                        <div class="col-xs-6 col-sm-6">
+                            <input type="file" class="form-control" name="fileToUpload" id="fileToUpload">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-6 col-sm-2">
+                            <label class="control-label">หมายเหตุ</label>
+                        </div>
+                        <div class="col-xs-6 col-sm-6">
+                            <textarea name="remake" id="remake" style="width:100%;"></textarea>
+                        </div>
+                    </div>
                 <!-- </form> -->
             </div>
             <div class="col-xs-12">
@@ -101,37 +117,71 @@
 
     function saveProduct(type){
 
-        $("#pageContent").load('show');
+        // $("#pageContent").load('show');
 
-        var serializeFrm = $("form").serializeArray();
+        // var serializeFrm = $("form").serializeArray();
 
+        // $.ajax({
+        //     url: 'saveProduct',
+        //     type: 'POST',
+        //     data: serializeFrm,
+        //     dataType: 'json',
+        //     success: function (response) {
+        //         console.log(response);
+        //         $("#pageContent").load('hide');
+                
+        //         if(response.status){
+        //             $.gritter.add({
+        //                 title: "",
+        //                 text: '<h5><i class="fa fa-check" aria-hidden="true"></i> '+response.msg+'</h5>',
+        //                 class_name: 'gritter-success'
+        //             });
+        //             getMenu('product');
+        //         }else{
+        //             $.gritter.add({
+        //                 title: "",
+        //                 text: '<h5><i class="fa fa-ban" aria-hidden="true"></i> '+response.msg+'</h5>',
+        //                 class_name: 'gritter-error'
+        //             });
+        //         }
+                
+        //     },
+        //     error: function (response) {
+        //         console.log(response);
+        //     }
+        // });
+        // ===============================
         $.ajax({
             url: 'saveProduct',
             type: 'POST',
-            data: serializeFrm,
-            dataType: 'json',
-            success: function (response) {
-                console.log(response);
-                $("#pageContent").load('hide');
-                
-                if(response.status){
-                    $.gritter.add({
-                        title: "",
-                        text: '<h5><i class="fa fa-check" aria-hidden="true"></i> '+response.msg+'</h5>',
-                        class_name: 'gritter-success'
-                    });
-                    getMenu('product');
-                }else{
-                    $.gritter.add({
-                        title: "",
-                        text: '<h5><i class="fa fa-ban" aria-hidden="true"></i> '+response.msg+'</h5>',
-                        class_name: 'gritter-error'
-                    });
+            data: new FormData($('form')[0]),
+            cache: false,
+            contentType: false,
+            processData: false,
+            xhr: function() {
+                var myXhr = $.ajaxSettings.xhr();
+                if (myXhr.upload) {
+                    myXhr.upload.addEventListener('progress', function(e) {
+                        if (e.lengthComputable) {
+                            $('progress').attr({
+                                value: e.loaded,
+                                max: e.total,
+                            });
+                        }
+                    } , false);
                 }
-                
+                return myXhr;
             },
-            error: function (response) {
+            success: function (response) {
+
+                response = JSON.parse(response);
                 console.log(response);
+                // if(response.status_flag == true){
+                //     dialogSuccess(response.msg);
+                //     getMenu('news');
+                // }else{
+                //     dialogError(response.msg);
+                // }
             }
         });
     }

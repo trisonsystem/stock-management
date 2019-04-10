@@ -4,8 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class ProductController extends CI_Controller {
 
   	public function __construct(){
-	    parent::__construct();
+        parent::__construct();
 
+        $this->baseUrl = $this->config->config['base_url'];
 	    $this->keyword = $this->config->config['keyword'];
         $this->apiUrl  = $this->config->config['api_url'];
     	$this->desKey  = $this->config->config['des_key'];
@@ -90,6 +91,58 @@ class ProductController extends CI_Controller {
     public function saveProduct(){
 
         $post = $this->input->post();
+
+         $fileName   = $_FILES['fileToUpload']['name'];
+
+        // debug($_FILES,true);
+
+        $config['upload_path']      = $this->baseUrl.'assets/upload/';
+        // $config['upload_path']      = '../assets/upload/'; 
+        $config['allowed_types']    = 'gif|jpg|png'; 
+        $config['file_name']        = date('Ymd-his').'-'.$post['barcode'];
+        // $config['max_size']         = 1000;
+        // $config['max_width']        = 1024;
+        // $config['max_height']       = 768;
+         $this->load->library('upload', $config);
+
+         debug($config);
+
+         $uploadImg = ($fileName !='')? $this->upload->do_upload('fileToUpload') :1;
+
+
+        if ($uploadImg) {
+
+            echo 555;
+
+            // $this->load->model('NewsModel');
+
+            // if($id !='' && $fileName !=''){
+
+            //     // $dataNews   = $this->NewsModel->getNews($id);
+            //     $exImg      = explode('/', $dataNews['msg']['news_img']);
+            //     $imgName    = $exImg[count($exImg)-1];
+            //     unlink('assets/upload/'.$imgName);
+
+            // }
+
+            // $arrpost    = array('id'=>$id,'head'=>$head,'title'=>$title,'detail'=>$detail);
+            // $arrUpload  = $this->upload->data();
+            // $saveNews   = json_decode($this->NewsModel->saveNews($arrpost,$arrUpload),true);
+
+            // $arrRetrun['status_flag']   = $saveNews['status_flag'];
+            // $arrRetrun['msg']           = $saveNews['msg'];
+
+        }else{
+            echo $ermsg                      = $this->upload->display_errors();
+            // $arrRetrun['status_flag']   = 0;
+            // $arrRetrun['msg']           = $ermsg;
+        }
+
+        // ========================
+
+        debug($_FILES);
+
+        debug($post,true);
 
         $arrData = $post;
         $arrData = json_encode($arrData);
