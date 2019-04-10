@@ -147,7 +147,7 @@ class UnitController extends CI_Controller {
 
     public function delUnit(){
         $post = $this->input->post();
-        debug($post, true);
+        // debug($post, true);
         $arrData = $post;
         $arrData = json_encode($arrData);
 

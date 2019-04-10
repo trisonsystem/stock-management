@@ -129,7 +129,7 @@
         });
     }
 
-    function delProductType(sid){
+    function delUnit(sid){
         
         // $("#loadMainProduct").load('show');
         $("button").prop("disabled",true);
@@ -143,7 +143,7 @@
                     callback: function(result) {
 
                         $.ajax({
-                            url: 'delProducttype',
+                            url: 'delUnit',
                             type: 'POST',
                             data: {id:sid},
                             dataType: 'json',
@@ -156,7 +156,7 @@
                                         text: '<h5><i class="fa fa-check" aria-hidden="true"></i> '+response.msg+'</h5>',
                                         class_name: 'gritter-success'
                                     });
-                                    getMenu('producttype');
+                                    getMenu('unit');
                                 }else{
                                     $.gritter.add({
                                         title: "",
