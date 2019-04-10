@@ -1,4 +1,3 @@
-<?php 
     // debug($adminlist);
 	$path_host  = $this->config->config['base_url'];
 	$keyword    = $this->config->config['keyword'];
