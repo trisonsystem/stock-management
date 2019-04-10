@@ -82,7 +82,10 @@ class ProducttypeController extends CI_Controller {
 
     public function addProducttype(){
 
-        $data                   = array();
+        $data['data']                   = array(
+                                            'id' => "",
+                                            'producttype_name' => ""
+                                        );
        
         $dataInfo['title']      = $this->lang->line('product_type');
         $dataInfo['sub_title']  = $this->lang->line('add_product_type');
@@ -118,6 +121,7 @@ class ProducttypeController extends CI_Controller {
     }
 
     public function editProducttype($id){
+        // debug($id, true);
         $arrData['id']  = $id;
         $arrData        = json_encode($arrData);
 
@@ -129,8 +133,13 @@ class ProducttypeController extends CI_Controller {
         $data                   = $data_readData['msg'];
 
         // debug($data,true);
+
+        $data['data']                   = array(
+                                            'id' => $data['id'],
+                                            'producttype_name' => $data['name']
+                                        );
     
-        $dataInfo['title']      = $this->lang->line('product_type');;
+        $dataInfo['title']      = $this->lang->line('product_type');
         $dataInfo['sub_title']  = $this->lang->line('edit_product_type');
         $dataInfo['temp']       = $this->load->view('producttype/AddProducttype', $data, true);
 

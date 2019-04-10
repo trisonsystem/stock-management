@@ -128,7 +128,12 @@ $route['test'] 				= 'MainController/test';
 
 ## Unit
 {
-	$route['unit/(:any)']  			= 'Unit/UnitController/$1';
+	$route['unit'] 				= 'Unit/UnitController/index';
+	$route['unitList'] 			= 'Unit/UnitController/unitList';
+	$route['addUnit']			= 'Unit/UnitController/addUnit';
+	$route['saveUnit']			= 'Unit/UnitController/saveUnit';
+	$route['editUnit/(:any)']	= 'Unit/UnitController/editUnit/$1';
+	$route['delUnit']			= 'unit/UnitController/delUnit';
 }
 ##--
 

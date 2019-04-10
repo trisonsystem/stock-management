@@ -327,7 +327,7 @@
                             <b class="arrow"></b>
                         </li>
                         <li id="product">
-                            <a href="#" onclick="getMenu('unit/index');">
+                            <a href="#" onclick="getMenu('unit');">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 <span class="lang_manage_unit"><?php echo $this->lang->line('manage_unit'); ?></span>
                             </a>

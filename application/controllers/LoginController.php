@@ -16,18 +16,16 @@ class LoginController extends CI_Controller {
         $arrCookie  = array('token','lang');
 
         foreach ($arrCookie as $value) {
-            if(isset($_COOKIE[$this->keyword.$value])){
+            if(!empty($_COOKIE[$this->keyword.$value])){
                 $chkCookie = false;
-            }else{
-                $chkCookie  = true;
             }
         }
 
-        // if($chkCookie == false){
-        //     redirect('main', 'refresh');
-        // }else{
+        if($chkCookie == true){
+            redirect('main', 'refresh');
+        }else{
             $this->load->view('login/login');
-        // }
+        }
     }
 
     public function chkLogin(){
