@@ -1,8 +1,15 @@
 <h1>Import Order</h1>
 <?php 
-    // debug($adminlist);
 	$path_host  = $this->config->config['base_url'];
 	$keyword    = $this->config->config['keyword'];
+
+    $data['id']             = (!empty($id))? $id : '';
+    $data['billNo']         = (!empty($order_no))? $order_no : $billNo;
+    $data['sdate']         = (!empty($order_date))? $order_date : '';
+    $data['refer_no']         = (!empty($order_refer))? $order_refer : '';
+    $data['distributor_id']     = (!empty($distributor_id))? $distributor_id : '';
+    $data['distributor_name']   = (!empty($distributor_name))? $distributor_name : '';
+    $data['remark']     = (!empty($remark))? $remark : '';
 ?>
 <div class="row pdTop">
     <div class="widget-body" id="loadBank">
@@ -10,17 +17,17 @@
 
             <div class="row">
                 <div class="col-xs-12 widthTable">
-                    
                     <form class="form-horizontal" id="frmImportOrder" action="" method="post">
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-1 control-label " >เลขที่เอกสาร</label>
                             <div class="col-xs-10 col-sm-2">
-                                <input type="text" id="billNo" name="billNo" value="<?php echo $billNo; ?>" readonly="readonly"/>
+                                <input type="hidden" id="order_id" name="order_id" value="<?php echo $data['id']; ?>" readonly="readonly" />
+                                <input type="text" id="billNo" name="billNo" value="<?php echo $data['billNo']; ?>" readonly="readonly" />
                             </div>
                             <label class="col-xs-12 col-sm-1 control-label " >วันที่เอกสาร</label>
                             <div class="col-xs-10 col-sm-2">
                                 <div class="input-group">
-                                    <input class="form-control date-picker" id="sdate" name="sdate" type="text" data-date-format="dd-mm-yyyy" value="" readonly="readonly" />
+                                    <input class="form-control date-picker" id="sdate" name="sdate" type="text" data-date-format="dd-mm-yyyy" value="<?php echo $data['sdate']; ?>" readonly="readonly" />
                                     <span class="input-group-addon">
                                         <i class="fa fa-calendar bigger-110"></i>
                                     </span>
@@ -30,21 +37,23 @@
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-1 control-label ">เลขที่อ้างอิง</label>
                             <div class="col-xs-10 col-sm-2">
-                                <input type="text" id="" name=""/>
+                                <input type="text" id="refer_no" name="refer_no" value="<?php echo $data['refer_no']; ?>" />
                             </div>
                             <label class="col-xs-12 col-sm-1 control-label ">ผู้ขาย</label>
                             <div class="col-xs-10 col-sm-4">
-                                <input type="text" id="distributor" name="distributor" style="width:74%;" />
+                                <input type="hidden" id="distributorid" name="distributorid" style="width:74%;" value="<?php echo $data['distributor_id']; ?>" />
+                                <input type="text" id="distributorname" name="distributorname" style="width:74%;" value="<?php echo $data['distributor_name']; ?>" <?php if($data['id'] !=''){ echo 'readonly';} ?> />
                             </div>
                             <label class="col-xs-12 col-sm-1 control-label ">เพิ่มสินค้า</label>
                             <div class="col-xs-10 col-sm-3">
-                                <input type="text" id="product" name="product" style="width:100%;" />
+                                <!-- <input type="text" id="productid" name="productid" value="<?php echo $data['product_id']; ?>"> -->
+                                <input type="text" id="productname" name="productname" class="col-xs-12 col-sm-12" value="" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-1 control-label " >หมายเหตุ</label>
                             <div class="col-xs-10 col-sm-6">
-                               <textarea class="autosize-transition form-control" id="form-field-8" placeholder="" style=""></textarea>
+                               <textarea class="autosize-transition form-control" id="remark" name="remark" placeholder="" style=""><?php echo $data['remark']; ?></textarea>
                             </div>
                         </div>
                     </form>
@@ -58,51 +67,30 @@
                                     <th >ชื่อสินค้า</th>
                                     <th >หน่วยนับ</th>
                                     <th >จำนวน</th>
-                                    <th >ตุ้นทุน/หนวย</th>
-                                    <th >ราคา/หนวย</th>
-                                    <th >จำนวนเงิน</th>
+                                    <th >ราคา/หน่วย</th>
                                 </tr>
                             </thead>
 
-                            <tbody>
+                            <tbody></tbody>
+                            <!-- <tfoot> -->
                             	<!-- <tr>
-                                    <td align="center">1</td>
-                                    <td align="center">DM-340</td>
-                                    <td align="center">น้ำยาล้างจาน</td>
-                                    <td align="center">ขวด</td>
-                                    <td align="center">
-                                    	<input type="text" id="" name="" value="10" />
-                                    </td>
-                                    <td align="center">8.50</td>
-                                    <td align="center">
-                                    	<input type="text" id="" name="" value="9.00" />
-                                    </td>
-                                    <td align="center">90.00</td>
+                            		<td colspan="5"  rowspan="4"></td>
+                            		<td align="center">รวม</td>
+                            		<td align="center">ss</td>
+                            	</tr> -->
+                            	<!-- <tr>
+                                    <td align="center">ส่วนลดรวม</td>
+                                    <td align="center">390.00</td>
+                                </tr>
+                                <tr>
+                                    <td align="center">ภาษีมูลค่าเพิ่ม 7%</td>
+                                    <td align="center">390.00</td>
+                                </tr>
+                                <tr>
+                                    <td align="center">รวมทั้งหมด</td>
+                                    <td align="center">390.00</td>
                                 </tr> -->
-                                <?php if(!empty($bookAgent)): ?>
-                                    <?php foreach($bookAgent as $key => $value): ?>
-                                        
-                                    <?php endforeach; ?>
-                                <?php else: ?>
-                                   <!--  <tr>
-                                        <td align="center" colspan="8"><strong>no_data</strong></td>
-                                    </tr> -->
-                                <?php endif; ?>
-                            </tbody>
-                            <tfoot>
-                            	<tr>
-                            		<td colspan="4" rowspan="2"></td>
-                            		<td align="center">70</td>
-                            		<td ></td>
-                            		<td ></td>
-                            		<td align="center">390.00</td>
-                            	</tr>
-                            	<tr>
-                            		<td colspan="4">
-                            			xxxxxxx
-                            		</td>
-                            	</tr>
-                            </tfoot>
+                            <!-- </tfoot> -->
                         </table>
                     </div>
 
@@ -117,6 +105,7 @@
         </div>
     </div>
 </div>
+
 <script type="text/javascript">
 	
 	jQuery(function($) {
@@ -132,30 +121,36 @@
     });
 
 	//## autocomplete
-	// var availableTags =[ { label: "Choice1", value: "value1"}];
-    $("#distributor").autocomplete({
+	$("#distributorname").autocomplete({
         source:'<?php echo $path_host; ?>autoc/distributor',
         // source:availableTags,
         select: function( event, ui ) {
-        	console.log(ui);
+            console.log(ui);
             event.preventDefault();
-            $("#distributor").val(ui.item.label);
+            $("#distributorname").val(ui.item.value.name);
+            $("#distributorid").val(ui.item.value.id);
+            // addProductOrder(ui.item.value);
+
+            $("#detailproduct").fadeIn();
         }
     });
-    $("#product").autocomplete({
-        source:'<?php echo $path_host; ?>autoc/product',
+
+    $("#productname").autocomplete({
+        source:'<?php echo $path_host; ?>autoc/product_unit',
         // source:availableTags,
         select: function( event, ui ) {
-        	console.log(ui);
+            console.log(ui);
             event.preventDefault();
-            $("#product").val('');
+            $("#productname").val();
+            $("#productid").val();
             addProductOrder(ui.item.value);
+
+            $("#detailproduct").fadeIn();
         }
     });
     //##
 
     function addProductOrder(arrValue){
-    	console.log(arrValue);
 
     	if($("table#importOrder tbody tr#tr"+arrValue.id).html() != undefined){return false;}
 
@@ -167,15 +162,13 @@
      	strHtml += ' 	<td align="center">'+no+'<input type="hidden" class="pId" value="'+arrValue.id+'"/></td>';
      	strHtml += '	<td align="center">'+arrValue.code+'</td>';
      	strHtml += '	<td align="center">'+arrValue.name+'</td>';
-     	strHtml += '	<td align="center">ชิ้น</td>';
+     	strHtml += '	<td align="center">'+arrValue.unit+'</td>';
      	strHtml += '	<td align="center">';
-     	strHtml += '		<input type="text" class="inp-amount" value="0" />';
+     	strHtml += '		<input type="text" class="inp-amount" value="0" onkeypress="validate_number(event)" />';
      	strHtml += '	</td>';
-     	strHtml += '	<td align="center">4.50</td>';
      	strHtml += '	<td align="center">';
-     	strHtml += '		<input type="text" class="inp-price" value="0.00" />';
+     	strHtml += '		<input type="text" class="inp-price" value="0.00" onkeypress="validate_number(event)" />';
      	strHtml += '	</td>';
-     	strHtml += '	<td align="center">0.00</td>';
      	strHtml += '</tr>';
 
      	if(trCount > 1){
@@ -183,33 +176,89 @@
      	}else{
      		$("table#importOrder tbody").append(strHtml);
      	}
+
+        $("#productname").val("");
     }
+
 
     function saveImportOrder(){
     	var serializeFrm = $("#frmImportOrder").serializeArray();
         // serializeFrm.push({name: 'bt', value: type});
         
-        var aa = {};
-        $('#importOrder tbody tr').each(function() {
-			var amount = $(this).find('.inp-amount').val();
-			var price = $(this).find('.inp-price').val();
-			var pId = $(this).find('.pId').val();
-			
-			aa[pId] = {'amount':amount,'price':price};
+        if(validate_isnull(serializeFrm)){
+            var list = {}; var c = 0;
+            $('#importOrder tbody tr').each(function() {
+                var amount = $(this).find('.inp-amount').val();
+                var price = $(this).find('.inp-price').val();
+                var pId = $(this).find('.pId').val();
+                
+                list[c] = {'product_id':pId, 'amount':amount, 'price':price};
+                c = c + 1;
+            });
 
-			console.log(aa);
-		});
+            $.ajax({
+                url: 'manage_importorder/saveImportOrder',
+                data: {"header":serializeFrm,"list":list},
+                type: 'POST',
+                dataType: 'json',
+                success:function(response){
+                    console.log(response);
 
-		$.ajax({
-		    url: baseUrl+"saveImportOrder",
-		    data: {"frm":serializeFrm,"data":aa},
-		    type: 'POST',
-		    dataType: 'json',
-	    	success:function(response){
-	    		console.log(response);
-	    		// genUpdateSoccer(response,'L');
-		    }
-	  	});
+                    if(response.status){
+                        $.gritter.add({
+                            title: "",
+                            text: '<h5><i class="fa fa-check" aria-hidden="true"></i> '+response.msg+'</h5>',
+                            class_name: 'gritter-success'
+                        });
+                        getMenu('manage_importorder/index');
+                    }else{
+                        $.gritter.add({
+                            title: "",
+                            text: '<h5><i class="fa fa-ban" aria-hidden="true"></i> '+response.msg+'</h5>',
+                            class_name: 'gritter-error'
+                        });
+                    }
+                }
+            });
+        }else{
+            console.log("error-xxxxx")
+        }
+		
+    }
 
+    function validate_isnull(Data){
+        var status = true;
+
+        $.each(Data,function(k,v){
+            if(v.name != "order_id" && v.name != "distributorname" && v.name != "productname" && v.name != "remark"){
+                var obj = $("#"+v.name);
+                if(obj.val() == ""){
+                    obj.addClass("error-form");
+                    obj.focus();
+                    status = false;
+                }else{
+                    obj.removeClass("error-form");
+                }
+            }
+        }); 
+
+        return status;
+    }
+
+    function validate_number(evt)
+    {
+        if(evt.keyCode!=8){
+            var theEvent = evt || window.event;
+            var key = theEvent.keyCode || theEvent.which;
+            key = String.fromCharCode(key);
+            var regex = /[0-9]|\./;
+            if (!regex.test(key))
+            {
+                theEvent.returnValue = false;
+
+                if (theEvent.preventDefault)
+                    theEvent.preventDefault();
+            }
+        }
     }
 </script>

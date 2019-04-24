@@ -62,6 +62,8 @@ $route['mainPage'] 				= 'MainController/mainPage';
 
 $route['manage_quotation/(:any)']  			= 'QuotationController/$1';
 $route['manage_quotation/(:any)/(:any)']  	= 'QuotationController/$1/$2';
+$route['manage_importorder/(:any)']			= 'ImportOrderController/$1';
+$route['manage_importorder/(:any)/(:any)']  = 'ImportOrderController/$1/$2';
 
 ## test
 $route['test'] 				= 'MainController/test';
@@ -75,8 +77,8 @@ $route['test'] 				= 'MainController/test';
 
 ## import
 {
-	$route['importOrder'] 		= 'ImportOrderController/index';
-	$route['saveImportOrder'] 	= 'ImportOrderController/saveImportOrder';
+	// $route['importOrder'] 		= 'ImportOrderController/index';
+	// $route['saveImportOrder'] 	= 'ImportOrderController/saveImportOrder';
 }
 
 ## member

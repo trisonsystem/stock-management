@@ -279,7 +279,14 @@
                             <b class="arrow"></b>
                         </li>
                         <li id="importOrder">
-                            <a href="#" onclick="getMenu('importOrder');">
+                            <a href="#" onclick="getMenu('manage_importorder/index');">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                สร้างนำเข้าสินค้า
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
+                        <li id="importOrder">
+                            <a href="#" onclick="getMenu('manage_importorder/importorder_list');">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 นำเข้าสินค้า
                             </a>

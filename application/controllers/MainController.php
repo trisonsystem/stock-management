@@ -90,6 +90,8 @@ class MainController extends CI_Controller {
 
         if($type == 'product'){
             $com = $this->MMaster->autocProduct();
+        }else if($type == 'product_unit'){
+            $com = $this->MMaster->autocProduct_unit();
         }else if($type == 'distributor'){
             $com = $this->MMaster->autocDistributor();
         }

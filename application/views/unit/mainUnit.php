@@ -87,8 +87,7 @@
 
         $.ajax({
             url: 'unitList',
-            data: { 
-
+            data: {
                 unit_name : $('input[name="unitname"]').val(),
                 pageNum     : $("#tbStock").data('pageNum'),
                 limit       : 5,
