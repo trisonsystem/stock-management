@@ -17,10 +17,12 @@ class ImportorderController extends CI_Controller {
 	public function index(){
 
         $data = array();
-        $data['billNo'] = $this->runbill();
 
-        $dataInfo['title']      = 'admin';
-        $dataInfo['sub_title']  = 'Import Order';
+        $dataInfo['title']      = $this->lang->line('import_order');
+        $dataInfo['sub_title']  = $this->lang->line('create_import_order');
+
+        $data['billNo'] = $this->runbill();
+        $data['title'] = $dataInfo['sub_title'];
         $dataInfo['temp']       = $this->load->view('importOrder/mainImport',$data,true);
 
         $this->output->set_output(json_encode($dataInfo));

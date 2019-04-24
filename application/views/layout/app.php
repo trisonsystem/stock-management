@@ -281,7 +281,7 @@
                         <li id="importOrder">
                             <a href="#" onclick="getMenu('manage_importorder/index');">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                สร้างนำเข้าสินค้า
+                                <?php echo $this->lang->line('create_import_order'); ?>
                             </a>
                             <b class="arrow"></b>
                         </li>

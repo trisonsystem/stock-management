@@ -1,4 +1,3 @@
-<h1>Import Order</h1>
 <?php 
 	$path_host  = $this->config->config['base_url'];
 	$keyword    = $this->config->config['keyword'];
@@ -11,6 +10,11 @@
     $data['distributor_name']   = (!empty($distributor_name))? $distributor_name : '';
     $data['remark']     = (!empty($remark))? $remark : '';
 ?>
+
+<div class="title_page">
+    <h1><?php echo $title; ?></h1>
+</div>
+<hr>
 <div class="row pdTop">
     <div class="widget-body" id="loadBank">
         <div class="widget-main">
@@ -19,12 +23,12 @@
                 <div class="col-xs-12 widthTable">
                     <form class="form-horizontal" id="frmImportOrder" action="" method="post">
                         <div class="form-group">
-                            <label class="col-xs-12 col-sm-1 control-label " >เลขที่เอกสาร</label>
+                            <label class="col-xs-12 col-sm-1 control-label " ><?php echo $this->lang->line('document_number'); ?></label>
                             <div class="col-xs-10 col-sm-2">
                                 <input type="hidden" id="order_id" name="order_id" value="<?php echo $data['id']; ?>" readonly="readonly" />
                                 <input type="text" id="billNo" name="billNo" value="<?php echo $data['billNo']; ?>" readonly="readonly" />
                             </div>
-                            <label class="col-xs-12 col-sm-1 control-label " >วันที่เอกสาร</label>
+                            <label class="col-xs-12 col-sm-1 control-label " ><?php echo $this->lang->line('document_date'); ?></label>
                             <div class="col-xs-10 col-sm-2">
                                 <div class="input-group">
                                     <input class="form-control date-picker" id="sdate" name="sdate" type="text" data-date-format="dd-mm-yyyy" value="<?php echo $data['sdate']; ?>" readonly="readonly" />
@@ -35,23 +39,23 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-xs-12 col-sm-1 control-label ">เลขที่อ้างอิง</label>
+                            <label class="col-xs-12 col-sm-1 control-label "><?php echo $this->lang->line('refer_number'); ?></label>
                             <div class="col-xs-10 col-sm-2">
                                 <input type="text" id="refer_no" name="refer_no" value="<?php echo $data['refer_no']; ?>" />
                             </div>
-                            <label class="col-xs-12 col-sm-1 control-label ">ผู้ขาย</label>
+                            <label class="col-xs-12 col-sm-1 control-label "><?php echo $this->lang->line('distributor'); ?></label>
                             <div class="col-xs-10 col-sm-4">
                                 <input type="hidden" id="distributorid" name="distributorid" style="width:74%;" value="<?php echo $data['distributor_id']; ?>" />
                                 <input type="text" id="distributorname" name="distributorname" style="width:74%;" value="<?php echo $data['distributor_name']; ?>" <?php if($data['id'] !=''){ echo 'readonly';} ?> />
                             </div>
-                            <label class="col-xs-12 col-sm-1 control-label ">เพิ่มสินค้า</label>
+                            <label class="col-xs-12 col-sm-1 control-label "><?php echo $this->lang->line('distributor'); ?></label>
                             <div class="col-xs-10 col-sm-3">
                                 <!-- <input type="text" id="productid" name="productid" value="<?php echo $data['product_id']; ?>"> -->
                                 <input type="text" id="productname" name="productname" class="col-xs-12 col-sm-12" value="" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-xs-12 col-sm-1 control-label " >หมายเหตุ</label>
+                            <label class="col-xs-12 col-sm-1 control-label " ><?php echo $this->lang->line('note'); ?></label>
                             <div class="col-xs-10 col-sm-6">
                                <textarea class="autosize-transition form-control" id="remark" name="remark" placeholder="" style=""><?php echo $data['remark']; ?></textarea>
                             </div>
@@ -62,12 +66,12 @@
                         <table id="importOrder" class="table table-striped table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th class="center" >ลำดับ</th>
-                                    <th>รหัสสินค้า</th>
-                                    <th >ชื่อสินค้า</th>
-                                    <th >หน่วยนับ</th>
-                                    <th >จำนวน</th>
-                                    <th >ราคา/หน่วย</th>
+                                    <th class="center" ><?php echo $this->lang->line('no'); ?></th>
+                                    <th><?php echo $this->lang->line('product_code'); ?></th>
+                                    <th ><?php echo $this->lang->line('product_name'); ?></th>
+                                    <th ><?php echo $this->lang->line('unit'); ?></th>
+                                    <th ><?php echo $this->lang->line('qty'); ?></th>
+                                    <th ><?php echo $this->lang->line('price_unit'); ?></th>
                                 </tr>
                             </thead>
 
@@ -93,11 +97,19 @@
                             <!-- </tfoot> -->
                         </table>
                     </div>
-
-                    <div>
-                    	<button onclick="saveImportOrder();">Save</button>
+                	<div class="clearfix form-actions">
+                        <div class="col-xs-12" style="text-align: center;">
+                            <button class="btn btn-info" type="button" onclick="saveImportOrder();">
+                                <i class="ace-icon fa fa-check bigger-110"></i>Submit
+                            </button>&nbsp;
+                            <button class="btn btn-danger" type="reset">
+                                <i class="ace-icon fa fa-undo bigger-110"></i>Reset
+                            </button>&nbsp;
+                            <button class="btn btn-inverse" type="button" onclick="getMenu('unit');">
+                                <i class="ace-icon fa fa-share bigger-110"></i>Black
+                            </button>
+                        </div>
                     </div>
-                    
                 </div>
             </div>
 
@@ -131,7 +143,7 @@
             $("#distributorid").val(ui.item.value.id);
             // addProductOrder(ui.item.value);
 
-            $("#detailproduct").fadeIn();
+            // $("#detailproduct").fadeIn();
         }
     });
 
@@ -141,11 +153,11 @@
         select: function( event, ui ) {
             console.log(ui);
             event.preventDefault();
-            $("#productname").val();
-            $("#productid").val();
+            // $("#productname").val();
+            // $("#productid").val();
             addProductOrder(ui.item.value);
 
-            $("#detailproduct").fadeIn();
+            // $("#detailproduct").fadeIn();
         }
     });
     //##
