@@ -28,6 +28,7 @@ class StockController extends CI_Controller {
     public function stockList(){
 
         $post = $this->input->post();
+        // debug($post, true);
 
         if($this->input->post('pageNum')){
 

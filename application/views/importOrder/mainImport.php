@@ -102,11 +102,11 @@
                             <button class="btn btn-info" type="button" onclick="saveImportOrder();">
                                 <i class="ace-icon fa fa-check bigger-110"></i>Submit
                             </button>&nbsp;
-                            <button class="btn btn-danger" type="reset">
+                            <button class="btn btn-danger" type="reset" onclick="getMenu('manage_importorder/index');">
                                 <i class="ace-icon fa fa-undo bigger-110"></i>Reset
                             </button>&nbsp;
-                            <button class="btn btn-inverse" type="button" onclick="getMenu('unit');">
-                                <i class="ace-icon fa fa-share bigger-110"></i>Black
+                            <button class="btn btn-success" type="button" onclick="getMenu('manage_importorder/importorder_list');">
+                                <i class="ace-icon fa fa-share bigger-110"></i><?php echo $this->lang->line('import_order'); ?>
                             </button>
                         </div>
                     </div>

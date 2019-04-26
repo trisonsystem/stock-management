@@ -17,7 +17,7 @@
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
-    <title>Admin Default</title>
+    <title>Stock Management</title>
 
     <meta name="description" content="ADMIN DEFAULT" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -288,7 +288,7 @@
                         <li id="importOrder">
                             <a href="#" onclick="getMenu('manage_importorder/importorder_list');">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                นำเข้าสินค้า
+                                <?php echo $this->lang->line('import_order'); ?>
                             </a>
                             <b class="arrow"></b>
                         </li>

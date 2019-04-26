@@ -77,85 +77,118 @@ class ImportorderController extends CI_Controller {
 
     }
 
+    public function importorder_list(){    
+        $data = array();
+        $data['adminlist']      = array();
+        $data['title']          = $this->lang->line('manage_import_order');
 
-
-
-
-
-    public function importorder_list(){
-
-        $post = $this->input->post();
-        // debug($post, true);
-        
-
-        if($this->input->post('pageNum')){
-
-            if($this->input->post('btName') == 'prevPage'){
-
-                $pageNum = $this->input->post('pageNum') - 1;
-
-            }else if($this->input->post('btName') == 'nextPage'){
-
-                $pageNum = $this->input->post('pageNum') + 1;
-
-            }else if($this->input->post('btName') == 'search'){
-
-                $pageNum = 1;
-
-            }else{
-
-                $pageNum = $this->input->post('pageNum');
-            }
-        }else{
-            
-            $pageNum = '1';
-        }
-
-        $arrData            = $post;
-        $arrData['page']    = $pageNum;
-        $arrData['limit']    = 15;
-        $arrData['hotel_id'] = $_COOKIE[$this->keyword."hotel_id"];
-        $arrData['user'] = $_COOKIE[$this->keyword."user"];
-        $arrData = json_encode($arrData);
-        $enData     = TripleDES::encryptText($arrData,$this->desKey);
-        $param      = http_build_query(array('data' => $enData));
-
-        $jsonData       = cUrl($this->apiUrl.'/importorder/read_importorder',"post",$param); 
-        // debug($jsonData, true);
-        $data_readData  = json_decode($jsonData);
-        $data['checkdata']      = ($data_readData->status_flag)? $data_readData->status_flag : '';
-        $data['listData']       = ($data_readData->status_flag)? $data_readData->data : '';
-        
-        $dataInfo['list']       = $this->load->view('importOrder/listImport',$data,true);
-        
-        $dataInfo['status']     = true;
-        $dataInfo['optionPage'] = array(
-                                            'page' => $pageNum,
-                                            'listCount' => count($data_readData)
-                                        );
-
+        $dataInfo['title']      = $data['title'];
+        $dataInfo['sub_title']  = $this->lang->line('import_order');
+        $dataInfo['temp']       = $this->load->view('importOrder/listImport',$data,true);
         $this->output->set_output(json_encode($dataInfo));
     }
 
-	public function adminList(){
+    public function get_importorder_list(){
+        
+        $get = $this->input->get();
+                
+        if ($this->input->get('btName')) {
+            
+            switch ($this->input->get('btName')) {
+                case 'prevPage':
+                    $pageNum = $this->input->get('pageNum') - 1;
+                    break;
 
-        $data = array();
+                case 'nextPage':
+                    $pageNum = $this->input->get('pageNum') + 1;
+                    break;
 
+                case 'search':
+                    $pageNum = 1;
+                    break;
+                
+                default:
+                    $pageNum = $this->input->get('pageNum');
+                    break;
+            }
 
-        // $vdata      = json_encode(array(1,3));
-        // $arrData    =  cUrl($this->apiUrl."adminList","post","token=".$this->token."&vdata=".$vdata);
-        // $arrData    = json_decode($arrData);
+        } else {
+            $pageNum = '1';
+        }
 
-        // echo $arrData; exit();
+        $arrData            = $get;
+        $arrData['page']    = $pageNum;
+        $arrData['limit']    = 15;
+        $arrData['hotel_id'] = $_COOKIE[$this->keyword."hotel_id"];
+        
+        $arrData    = json_encode($arrData);
+        $desData    = TripleDES::encryptText($arrData,$this->desKey);
+        $param      = http_build_query(array('data' => $desData));
 
-        // $data['adminlist'] = $arrData;
+        $jsonData    = cUrl($this->apiUrl.'/importorder/read_importorder',"post",$param);
+        echo $jsonData;
+        // debug(json_decode($jsonData), true);
+        // debug(json_decode($jsonData), true);
+        // $res = json_decode($jsonData);
+        // debug($res, true);
+        // print_r( json_decode($jsonData) );
 
-        // $dataInfo['title']      = 'admin';
-        // $dataInfo['sub_title']  = 'Import Order';
-        // $dataInfo['temp']       = $this->load->view('importOrder/mainImport',$data,true);
+        // $post = $this->input->post();
+        // // debug($post, true);
+        
+
+        // if($this->input->post('pageNum')){
+
+        //     if($this->input->post('btName') == 'prevPage'){
+
+        //         $pageNum = $this->input->post('pageNum') - 1;
+
+        //     }else if($this->input->post('btName') == 'nextPage'){
+
+        //         $pageNum = $this->input->post('pageNum') + 1;
+
+        //     }else if($this->input->post('btName') == 'search'){
+
+        //         $pageNum = 1;
+
+        //     }else{
+
+        //         $pageNum = $this->input->post('pageNum');
+        //     }
+        // }else{
+            
+        //     $pageNum = '1';
+        // }
+        // // debug("ddddd", true);
+        // $arrData            = $post;
+        // $arrData['page']    = $pageNum;
+        // $arrData['limit']    = 15;
+        // $arrData['hotel_id'] = $_COOKIE[$this->keyword."hotel_id"];
+        // $arrData['user'] = $_COOKIE[$this->keyword."user"];
+        // $arrData = json_encode($arrData);
+        // $enData     = TripleDES::encryptText($arrData,$this->desKey);
+        // $param      = http_build_query(array('data' => $enData));
+
+        // $jsonData       = cUrl($this->apiUrl.'/importorder/read_importorder',"post",$param); 
+        // // debug($jsonData, true);
+        // $data_readData  = json_decode($jsonData);
+        // $data['checkdata']      = ($data_readData->status_flag)? $data_readData->status_flag : '';
+        // $data['listData']       = ($data_readData->status_flag)? $data_readData->data : '';
+
+        // $data['title']      = $this->lang->line('manage_import_order');
+        // // debug($data, true);
+        // // $dataInfo['title']      = $this->lang->line('import_order');
+        // // $dataInfo['sub_title']  = $data['title'];
+        // // $dataInfo['temp']       = $this->load->view('importOrder/listImport',$data,true);
+        
+        // $data['status']     = true;
+        // $data['optionPage'] = array(
+        //                                     'page' => $pageNum,
+        //                                     'listCount' => count($data_readData)
+                                        // );
 
         // $this->output->set_output(json_encode($dataInfo));
+        // print_r( json_encode($res) );
     }
-
 
 }

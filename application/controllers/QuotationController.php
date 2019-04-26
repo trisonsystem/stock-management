@@ -64,6 +64,7 @@ class QuotationController extends CI_Controller {
     public function get_quotation_list(){
         $this->load->model('MQuotation');
         $res = $this->MQuotation->getQuotaion( $_GET );
+        // debug(json_encode($res), true);
         print_r( json_encode($res) );
     }
 

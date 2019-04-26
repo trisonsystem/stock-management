@@ -18,7 +18,7 @@
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta charset="utf-8" />
-        <title>Admin Sunmoney</title>
+        <title>Stock Management</title>
         <meta name="description" content="Login Admin 88Wallet Page" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
 
