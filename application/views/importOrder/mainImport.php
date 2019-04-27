@@ -30,7 +30,7 @@
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-1 control-label " ><?php echo $this->lang->line('document_number'); ?></label>
                             <div class="col-xs-10 col-sm-2">
-                                <input type="text" id="order_id" name="order_id" value="<?php echo $data['id']; ?>" readonly="readonly" />
+                                <input type="hidden" id="order_id" name="order_id" value="<?php echo $data['id']; ?>" readonly="readonly" />
                                 <input type="text" id="billNo" name="billNo" value="<?php echo $data['billNo']; ?>" readonly="readonly" />
                             </div>
                             <label class="col-xs-12 col-sm-1 control-label " ><?php echo $this->lang->line('document_date'); ?></label>

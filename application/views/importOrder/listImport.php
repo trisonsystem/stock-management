@@ -49,8 +49,8 @@
             <option value=""> -- <?php echo $this->lang->line('select_status'); ?> -- </option>
             <option value="0">กำลังสร้าง</option>
             <option value="1">อนุมัติ</option>
-            <!-- <option value="2">กำลังสร้าง</option> -->
-            <option value="99">ยกเลิก</option>
+            <option value="2">ยกเลิก</option>
+            <!-- <option value="99">ยกเลิก</option> -->
           </select>
         </div>
         <div class="col-lg-2 col-md-2 col-sm-3 col-xs-5 text-right">
@@ -69,11 +69,11 @@
   					<th>ลำดับ</th>
   					<th>เลขที่ใบเสนอสินค้า</th>
   					<th>วันที่เอกสาร</th>
-            <th><?php echo $this->lang->line('distributor'); ?></th>
+            <th>สินค้า</th>
             <th>เลขที่อ้างอิง</th>
-  					<th>สถานะ</th>
-  					<th>ผู้สร้าง</th>
+  					<th>สถานะ</th>  					
             <th>remark</th>
+            <th>ผู้สร้าง</th>
   					<th>วันที่สร้าง</th>
   					<th>พิมพ์</th>
   					<th>อนุมัติ</th>
@@ -115,13 +115,15 @@
       		</div>
          	<table class="table" id="tb-pd-list">
          		<thead>
-				<tr>
-					<th>ลำดับ</th>
-					<th>สินค้า</th>
-					<th>จำนวน</th>
-				</tr>
-			</thead>
-			<tbody></tbody>
+      				<tr>
+      					<th>ลำดับ</th>
+      					<th>สินค้า</th>
+      					<th>จำนวน</th>
+                <th>หน่วย</th>
+                <th>ราคา</th>
+      				</tr>
+      			</thead>
+		        <tbody></tbody>
          	</table>
       </div>
       <div class="modal-footer">
@@ -148,17 +150,6 @@
   </div>
 </div>
 
-<!-- Modal -->
-  <div class="modal fade" id="myModalfilter" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal_content" id="modal_content"></div>
-      </div>
-      
-    </div>
-  </div>
 
 <link rel="stylesheet" type="text/css" href="<?php echo $path_assets?>css/Quotation.css">
 
@@ -202,16 +193,16 @@
           switch (v.status) {
             case '0': status = '<span style="color:#000;">กำลังสร้าง</span>';break;
             case '1': status = '<span style="color:blue;">อนุมัติ</span>';break;
-            // case '2': status = '<span style="color:#cc8b0d;">ยกเลิกรอการแก้ไข</span>';break;
+            case '2': status = '<span style="color:#cc8b0d;">ยกเลิก</span>';break;
             // case '3': status = '<span style="color:green;">แก้ไขรอการอนุมัติ</span>';break;
-            case '99': status = '<span style="color:red;">ยกเลิก</span>';break;
+            // case '99': status = '<span style="color:red;">ยกเลิก</span>';break;
           }
 
           str_html += "<tr>";
           str_html += " <td>"+( parseInt(k)+1 )+"</td>"; 
           str_html += " <td>"+v.order_no+"</td>";  
           str_html += " <td>"+v.order_date+"</td>";
-          str_html += " <td>"+v.distri_name+"</td>"; 
+          str_html += " <td><a onclick='open_detail_pd("+v.id+",\""+v.order_no+"\",\""+v.create_date+"\")'>สินค้า รายละเอียด</td>"; 
           str_html += " <td>"+v.order_refer+"</td>";
           str_html += " <td>"+status+"</td>";
           str_html += " <td>"+v.remark+"</td>"; 
@@ -226,7 +217,7 @@
           str_html += " </td>"; 
           str_html += " <td align='center'>";
           str_html += "   <i class='fa fa-edit' style='font-size:20px' onclick='edit_importorder("+v.id+")'></i>";
-          str_html += "   <i class='fa fa-remove' style='font-size:20px' onclick='delete_quotation("+v.id+")'></i>";
+          str_html += "   <i class='fa fa-remove' style='font-size:20px' onclick='delete_document("+v.id+")'></i>";
           str_html += " </td>";        
           str_html += "</tr>";
         });
@@ -276,6 +267,31 @@
     $("textarea").val("");
   }
 
+  function open_detail_pd(id, doc_no, create_date){
+    var str_html  = "";
+    $.get("manage_importorder/get_document_pd_list",{ doc_id : id },function( aData ){
+      aData = jQuery.parseJSON( aData );
+      // console.log(aData['data']);
+      $.each(aData['data'], function(k , v){
+        // console.log(v);
+        str_html += "<tr>"; 
+        str_html += " <td align='center'>"+( parseInt(k)+1 )+"</td>"; 
+        str_html += " <td>"+v.product_name+"</td>"; 
+        str_html += " <td align='right'>"+v.amount+"</td>"; 
+        str_html += " <td align='right'>"+v.unit_name+"</td>"; 
+        str_html += " <td align='right'>"+v.price+"</td>"; 
+        str_html += "</tr>"; 
+      });
+
+      $("#tb-pd-list tbody").html( str_html );
+      $("#sp_datecreate").html( create_date );
+      $("#md-pd-list").modal("show");
+
+    });
+
+    $("#md-quotation-title").html( "เลขที่ใบเสนอสินค้า " + doc_no );
+  }
+
   function approve(id){
     $.post("manage_importorder/approve",  { doc_id : id } ,function( res ){
       res = jQuery.parseJSON( res ); 
@@ -316,6 +332,22 @@
 
   function edit_importorder(id){
     getMenu('manage_importorder/edit_importOrder/' + id);
+  }
+
+  function delete_document(id){
+    if (confirm("ยืนยันการลบข้อมูล")) {
+      $.post("manage_importorder/delete",  { doc_id : id } ,function( res ){
+        res = jQuery.parseJSON( res );
+        console.log(res);
+        if (res.status) {
+          alert( res.msg );
+          searchImportorder();
+        }else{
+          alert( res.msg );
+        }
+
+      });
+    }
   }
 
 </script>

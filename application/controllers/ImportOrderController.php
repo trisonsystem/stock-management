@@ -157,6 +157,21 @@ class ImportorderController extends CI_Controller {
         echo $jsonData;
     }
 
+    public function get_document_pd_list(){
+        $get = $this->input->get();
+
+        // $arrData['hotel_id'] = $_COOKIE[$this->keyword."hotel_id"];
+        $arrData['doc_id'] = $get['doc_id'];
+        $arrData    = json_encode($arrData);
+        $desData    = TripleDES::encryptText($arrData,$this->desKey);
+        $param      = http_build_query(array('data' => $desData));
+
+        $jsonData    = cUrl($this->apiUrl.'/importorder/read_importorder_list',"post",$param);
+        // debug($jsonData, true);
+        echo $jsonData;
+
+    }
+
     public function approve(){
         $arrpost = $this->input->post();
         $arrpost["sapprove"]      = "approve";
@@ -203,6 +218,32 @@ class ImportorderController extends CI_Controller {
             
             $dataSuccess['status']  = 0;
             $dataSuccess['msg']     = 'save_error  '.$dataInsert['msg'];
+        }
+
+        echo json_encode($dataSuccess);
+    }
+
+    public function delete(){
+        $arrpost = $this->input->post();
+        $arrpost["sapprove"]      = "no_approve";
+
+        $arrData    = json_encode($arrpost);
+        $desData    = TripleDES::encryptText($arrData,$this->desKey);
+        $param      = http_build_query(array('data' => $desData));
+
+        $jsonData       = cUrl($this->apiUrl.'/importorder/del_importorder',"post",$param);
+        // debug($jsonData, true);
+        $dataInsert  = json_decode($jsonData,true);
+
+        if(!empty($dataInsert['status_flag'])){
+
+            $dataSuccess['status']  = 1;
+            $dataSuccess['msg']     = 'delete_success';
+
+        }else{
+            
+            $dataSuccess['status']  = 0;
+            $dataSuccess['msg']     = 'delete_error  '.$dataInsert['msg'];
         }
 
         echo json_encode($dataSuccess);
