@@ -1,14 +1,15 @@
 <?php 
 	$path_host  = $this->config->config['base_url'];
 	$keyword    = $this->config->config['keyword'];
-
+// debug($listData); 
     $data['id']             = (!empty($id))? $id : '';
-    $data['billNo']         = (!empty($order_no))? $order_no : $billNo;
+    $data['billNo']         = (!empty($billNo))? $billNo : '';
     $data['sdate']         = (!empty($order_date))? $order_date : '';
     $data['refer_no']         = (!empty($order_refer))? $order_refer : '';
     $data['distributor_id']     = (!empty($distributor_id))? $distributor_id : '';
     $data['distributor_name']   = (!empty($distributor_name))? $distributor_name : '';
     $data['remark']     = (!empty($remark))? $remark : '';
+    $data['order_list'] = (!empty($order_list))? $order_list : 0;
 ?>
 
 <div class="title_page">
@@ -18,14 +19,18 @@
 <div class="row pdTop">
     <div class="widget-body" id="loadBank">
         <div class="widget-main">
-
+            <?php 
+                // debug($data['order_list']);                
+            ?>
             <div class="row">
                 <div class="col-xs-12 widthTable">
+                    <!-- <input type="text" id="arrList" name="arrList" value="<?php echo $data['order_list']; ?>"> -->
+                    <p id="datalist" style="display: none;"><?php echo $data['order_list']; ?></p>
                     <form class="form-horizontal" id="frmImportOrder" action="" method="post">
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-1 control-label " ><?php echo $this->lang->line('document_number'); ?></label>
                             <div class="col-xs-10 col-sm-2">
-                                <input type="hidden" id="order_id" name="order_id" value="<?php echo $data['id']; ?>" readonly="readonly" />
+                                <input type="text" id="order_id" name="order_id" value="<?php echo $data['id']; ?>" readonly="readonly" />
                                 <input type="text" id="billNo" name="billNo" value="<?php echo $data['billNo']; ?>" readonly="readonly" />
                             </div>
                             <label class="col-xs-12 col-sm-1 control-label " ><?php echo $this->lang->line('document_date'); ?></label>
@@ -48,7 +53,7 @@
                                 <input type="hidden" id="distributorid" name="distributorid" style="width:74%;" value="<?php echo $data['distributor_id']; ?>" />
                                 <input type="text" id="distributorname" name="distributorname" style="width:74%;" value="<?php echo $data['distributor_name']; ?>" <?php if($data['id'] !=''){ echo 'readonly';} ?> />
                             </div>
-                            <label class="col-xs-12 col-sm-1 control-label "><?php echo $this->lang->line('distributor'); ?></label>
+                            <label class="col-xs-12 col-sm-1 control-label "><?php echo $this->lang->line('product_name'); ?></label>
                             <div class="col-xs-10 col-sm-3">
                                 <!-- <input type="text" id="productid" name="productid" value="<?php echo $data['product_id']; ?>"> -->
                                 <input type="text" id="productname" name="productname" class="col-xs-12 col-sm-12" value="" />
@@ -130,6 +135,8 @@
         .next().on(ace.click_event, function(){
             $(this).prev().focus();
         });
+
+        editProductOrder();
     });
 
 	//## autocomplete
@@ -162,13 +169,36 @@
     });
     //##
 
-    function addProductOrder(arrValue){
+    function editProductOrder(){
+        var value = document.getElementById("datalist").innerHTML;
+        if(value != 0){
+            var arrValue = jQuery.parseJSON( value );
+            arrValue.forEach(function(el) {
+                var adata = {
+                      id          : el['product_id'],
+                      code        : el['product_code'],
+                      name        : el['product_name'],
+                      unit        : el['unit_name'],
+                      amount      : el['amount'],
+                      price       : el['price']
+                }
+                addProductOrder(adata);
+            });
+        }
+        
 
+    }
+
+    function addProductOrder(arrValue){
     	if($("table#importOrder tbody tr#tr"+arrValue.id).html() != undefined){return false;}
 
     	var strHtml = '';
+        var a = 0; var p = 0;
     	var trCount = $("table#importOrder tbody tr").length;
     	var no = parseInt(trCount)+1;
+
+        if(typeof arrValue.amount != 'undefined'){ a = arrValue.amount; }
+        if(typeof arrValue.price != 'undefined'){ p = arrValue.price; }
 
     	strHtml += '<tr id="tr'+arrValue.id+'">';
      	strHtml += ' 	<td align="center">'+no+'<input type="hidden" class="pId" value="'+arrValue.id+'"/></td>';
@@ -176,10 +206,10 @@
      	strHtml += '	<td align="center">'+arrValue.name+'</td>';
      	strHtml += '	<td align="center">'+arrValue.unit+'</td>';
      	strHtml += '	<td align="center">';
-     	strHtml += '		<input type="text" class="inp-amount" value="0" onkeypress="validate_number(event)" />';
+     	strHtml += '		<input type="text" class="inp-amount" value="'+a+'" onkeypress="validate_number(event)" />';
      	strHtml += '	</td>';
      	strHtml += '	<td align="center">';
-     	strHtml += '		<input type="text" class="inp-price" value="0.00" onkeypress="validate_number(event)" />';
+     	strHtml += '		<input type="text" class="inp-price" value="'+p+'" onkeypress="validate_number(event)" />';
      	strHtml += '	</td>';
      	strHtml += '</tr>';
 
@@ -195,7 +225,6 @@
 
     function saveImportOrder(){
     	var serializeFrm = $("#frmImportOrder").serializeArray();
-        // serializeFrm.push({name: 'bt', value: type});
         
         if(validate_isnull(serializeFrm)){
             var list = {}; var c = 0;
