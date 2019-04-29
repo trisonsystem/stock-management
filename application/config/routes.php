@@ -139,6 +139,17 @@ $route['test'] 				= 'MainController/test';
 }
 ##--
 
+## Unit
+{
+	$route['distributor'] 				= 'Distributor/DistributorController/index';
+	// $route['unitList'] 			= 'Unit/UnitController/unitList';
+	// $route['addUnit']			= 'Unit/UnitController/addUnit';
+	// $route['saveUnit']			= 'Unit/UnitController/saveUnit';
+	// $route['editUnit/(:any)']	= 'Unit/UnitController/editUnit/$1';
+	// $route['delUnit']			= 'unit/UnitController/delUnit';
+}
+##--
+
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

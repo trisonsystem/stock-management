@@ -340,6 +340,13 @@
                             </a>
                             <b class="arrow"></b>
                         </li>
+                        <li id="stock">
+                            <a href="#" onclick="getMenu('distributor');">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                <span class="lang_manage_distributor"><?php echo $this->lang->line('manage_distributor'); ?></span>
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
                     </ul>
                 </li>
                 

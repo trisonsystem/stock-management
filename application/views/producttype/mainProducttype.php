@@ -30,10 +30,10 @@
                         <table id="tbStock" class="table table-striped table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th class="text-center"><?php echo $this->lang->line('no'); ?></th>
-                                    <th class="text-center"><?php echo $this->lang->line('product_type'); ?></th>
+                                    <th class="text-center" width="10%"><?php echo $this->lang->line('no'); ?></th>
+                                    <th><?php echo $this->lang->line('product_type'); ?></th>
                                     <!-- <th class="text-center" width="10%"><?php echo $this->lang->line('status'); ?></th>  -->
-                                    <th class="text-center"><?php echo $this->lang->line('action'); ?></th>                 
+                                    <th class="text-center" width="20%"><?php echo $this->lang->line('action'); ?></th>                 
                                 </tr>
                             </thead>
                             <tbody>

@@ -8,7 +8,7 @@
     <?php foreach($listData as $key => $value): ?>
     <tr  style="">
         <td align="center"><?php echo $value->autokey; ?></td>
-        <td align="center"><?php echo $value->name; ?></td>
+        <td><?php echo $value->name; ?></td>
         <td align="center">
             <a onclick="" >
                 <button class="btn btn-white" style="padding:2px 5px;" onclick="getMenu('editUnit/<?php echo $value->id; ?>')">
