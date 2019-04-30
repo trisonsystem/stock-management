@@ -292,8 +292,35 @@
                             </a>
                             <b class="arrow"></b>
                         </li>
+                        <!-- <li id="importOrder">
+                            <a href="#" onclick="getMenu('manage_importorder/importorder_list');">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                <?php echo $this->lang->line('return_product'); ?>-<?php echo $this->lang->line('credit_note'); ?>
+                            </a>
+                            <b class="arrow"></b>
+                        </li> -->
                     </ul>
-                </li>                
+                </li>
+                <!-- <li class="open" id="menuActive">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-cogs"></i>
+                        <span class="menu-text">
+                            สต๊อกส่งออก
+                        </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+                    <b class="arrow"></b>
+                    <ul class="submenu">
+                        <li id="manage_quotation">
+                            <a href="#" onclick="getMenu('manage_quotation/index');">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                สร้างใบส่งออกสินค้า
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>  -->               
                 <li class="" id="xxx">
                     <a href="#" class="dropdown-toggle">
                         <i class="menu-icon fa fa-cogs"></i>
