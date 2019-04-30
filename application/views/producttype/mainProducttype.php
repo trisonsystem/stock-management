@@ -13,7 +13,7 @@
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-2 control-label" style="max-width:85px;"><?php echo $this->lang->line('search'); ?></label>
                             <div class="col-xs-10 col-sm-3">
-                                <input type="text" id="producttypename" name="producttypename" value="" />
+                                <input type="text" id="distributorname" name="distributorname" value="" />
                             </div>
                             <div class="col-xs-12 col-sm-4">
                                 <button type="button" name="search" id="search" class="btn btn-primary btn-sm" onclick="searchProductType(this);">

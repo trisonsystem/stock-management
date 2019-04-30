@@ -142,11 +142,11 @@ $route['test'] 				= 'MainController/test';
 ## Unit
 {
 	$route['distributor'] 				= 'Distributor/DistributorController/index';
-	// $route['unitList'] 			= 'Unit/UnitController/unitList';
-	// $route['addUnit']			= 'Unit/UnitController/addUnit';
-	// $route['saveUnit']			= 'Unit/UnitController/saveUnit';
-	// $route['editUnit/(:any)']	= 'Unit/UnitController/editUnit/$1';
-	// $route['delUnit']			= 'unit/UnitController/delUnit';
+	$route['distributorList'] 			= 'Distributor/DistributorController/distributorList';
+	$route['addDistributor']			= 'Distributor/DistributorController/addDistributor';
+	$route['saveDistributor']			= 'Distributor/DistributorController/saveDistributor';
+	$route['editDistributor/(:any)']	= 'Distributor/DistributorController/editDistributor/$1';
+	$route['delDistributor']			= 'Distributor/DistributorController/delDistributor';
 }
 ##--
 

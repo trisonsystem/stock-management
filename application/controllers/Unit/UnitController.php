@@ -27,8 +27,6 @@ class UnitController extends CI_Controller {
     public function unitList(){
 
         $post = $this->input->post();
-        // debug($post, true);
-        
 
         if($this->input->post('pageNum')){
 
@@ -63,12 +61,10 @@ class UnitController extends CI_Controller {
 
         $jsonData       = cUrl($this->apiUrl.'/unit/read_unit',"post",$param);
         $data_readData  = json_decode($jsonData);
-        // echo "test data";
+        
         $data['checkdata']      = ($data_readData->status_flag)? $data_readData->status_flag : '';
         $data['listData']       = ($data_readData->status_flag)? $data_readData->data : '';
-        // $data['listData']       = ($data_readData->status_flag == 1)? 'Yes' : 'No';
-        // debug($post);
-        // debug($data['listData'], true);
+        
         $dataInfo['list']       = $this->load->view('unit/listDataUnit',$data,true);
         
         $dataInfo['status']     = true;
@@ -147,7 +143,7 @@ class UnitController extends CI_Controller {
 
     public function delUnit(){
         $post = $this->input->post();
-        // debug($post, true);
+
         $arrData = $post;
         $arrData = json_encode($arrData);
 
@@ -155,10 +151,8 @@ class UnitController extends CI_Controller {
         $param      = http_build_query(array('data' => $desData));
 
         $jsonData    = cUrl($this->apiUrl.'/unit/del_unit',"post",$param);
-        // debug($jsonData, true);
+        
         $dataJson  = json_decode($jsonData,true);
-
-        // debug($dataJson,true);
 
         if(!empty($dataJson['status_flag'])){
             $dataSuccess['status']  = 1;
